@@ -36,7 +36,7 @@ if __name__ == '__main__':
     movie_list = get_video_list_from_imdb_chart(TOP_MOVIE_CHART_URL)
     tv_list = get_video_list_from_imdb_chart(TOP_TV_CHART_URL)
 
-    for video_name, video_url in movie_list + tv_list[:100]:
+    for video_name, video_url in movie_list + tv_list[:150]:
         doc_id += 1
         doc_f = open(DOC_FOLDER+str(doc_id)+'.txt', 'w')
         doc_f.write('# ' + video_name + '\n\n')
