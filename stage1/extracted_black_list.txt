@@ -19,7 +19,6 @@ Dublin
 San
 Galaxian
 Mississippi
-WWI
 AfricanAmerican
 Beyoglu
 Carentan
@@ -171,8 +170,6 @@ Oz.
 Angeles
 Colombia
 Regency
-Knight
-Once
 Castlerock
 World
 Indiana
