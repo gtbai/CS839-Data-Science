@@ -10,3 +10,5 @@ his
 her
 our
 their
+Island
+Chef
