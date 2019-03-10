@@ -36,8 +36,7 @@ if __name__ == '__main__':
     num_docs = 0
     num_mentions = 0
 
-    for doc_name in os.listdir(MARKED_DOC_DIR):
-
+    for doc_name in os.listdir(MARKED_DOC_DIR): 
         if not doc_name.endswith('.txt'):
             continue
         bad_doc_flag, person_name_num = is_bad_doc(doc_name)
@@ -51,7 +50,6 @@ if __name__ == '__main__':
             num_mentions += person_name_num
             dest_dir = SET_I_DIR if num_docs <= 200 else SET_J_DIR
             shutil.copyfile(MARKED_DOC_DIR+doc_name, dest_dir+doc_name)
-            # shutil.copyfile(MARKED_DOC_DIR+doc_name, FILTERED_DOC_DIR+doc_name)
 
     
     print('After filtering, there are {} docs, {} mentions'

@@ -16,56 +16,27 @@ import random
 import nltk
 import multiprocessing
 import warnings
+import argparse
 
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
 from sklearn.linear_model import LogisticRegression
+from sklearn.svm import LinearSVC
+from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import precision_score, recall_score
+from sklearn.metrics import precision_score, recall_score, f1_score
 
 pd.set_option('display.max_columns', None)  # or 1000
 pd.set_option('display.max_rows', None)  # or 1000
 pd.set_option('display.max_colwidth', -1)
 warnings.filterwarnings("ignore")
 
-# In[2]:
-
-
-NUM_DOC = 300
-FILTERED_DOC_DIR = '../filtered_documents/'
+DEBUG = False
+SET_I_DIR = '../documents/set_I/'
+SET_J_DIR = '../documents/set_J/'
 MAX_EXAMPLE_LEN = 3
-PREFIX_SUFFIX_LIST_DIR = '../prefix_suffix_lists/'
-BLACK_WHITE_LIST_DIR = '../black_white_lists/'
-
-FEATURE_LIST = [
-    'contains_mex_char',
-    'has_extras_in_middle',
-    
-    'next_word_verb',
-    'all_proper_noun',
-    
-    'prefix_in_whitelist',
-    'prefix_in_blacklist',
-    'suffix_in_whitelist',
-    'suffix_in_blacklist',
-    
-    'surrounded_by_paren',
-    'has_left_comma',
-    'has_right_comma',
-    'has_left_period',
-    'has_right_period',
-    'first_last_word_capital',
-    'surrounding_word_capital',
-    'all_lowercase',
-
-    'end_with_prime_s',
-#     'tf',
-#     'df',
-#     'tf-idf'
-]
-
-
-# In[3]:
-
+PREFIX_SUFFIX_LIST_DIR = '../lists/prefix_suffix_lists/'
+BLACK_WHITE_LIST_DIR = '../lists/black_white_lists/'
 
 prefix_black_set, prefix_white_set = set(), set()
 suffix_black_set, suffix_white_set = set(), set()
@@ -87,11 +58,7 @@ black_set = set()
 for black_word in open(BLACK_WHITE_LIST_DIR + 'black_list.txt', 'r').readlines():
     black_set.add(black_word.strip().lower())
 
-
-# ## Unil Functions
-
-# In[4]:
-
+# Unil Functions
 
 def brackets_matching(example_padded, lbrace, rbrace):
     example_len = len(example_padded) - 4
@@ -149,24 +116,14 @@ def gen_word_prop_dict(text):
             word_tag_dict[word].add(tag)
     return word_tag_dict
 
-
-# In[5]:
-
-
 label = brackets_matching(['father,', 'Dr.', '{Henry', 'Jones}.', 'The'], '{', '}')
 
-
-# ## Feature and Label Definition
-
-# In[6]:
-
+# Feature and Label Definition
 
 # Generate feature matrix and label vector for a document and a particular example length
-def gen_feature_label_example_len(doc_name, text, example_len, word_tag_dict):
-#     X_len = pd.DataFrame(columns=(['example'] + FEATURE_LIST))
-    # X_len = pd.DataFrame()
-    # y_len = pd.DataFrame(columns=['example', 'is_person_name'])
-    
+def gen_feature_label_example_len(doc_path, text, example_len, word_tag_dict):
+    doc_name = doc_path.split('/')[-1]
+
     feature_vectors = list()
     labels = list()
 
@@ -187,6 +144,24 @@ def gen_feature_label_example_len(doc_name, text, example_len, word_tag_dict):
         # generate "avg_word_len" feature
         feature_dict['avg_word_len'] = len(remove_extras(example_joined).replace(' ', '')) / example_len
         
+        # generate "all_lowercase" feature
+        feature_dict['all_lowercase'] = 1 if re.fullmatch(r'[^A-Z]+', example_joined) else 0
+        
+        # generate "first_last_word_capital" feature
+        feature_dict['all_word_capital'] = 1
+        for word in example:
+            if not re.fullmatch('[^a-zA-Z]*[A-Z].*', word):
+                feature_dict['all_word_capital'] = 0
+                break
+
+        # generate "all_uppercase" feature
+        feature_dict['all_uppercase'] = 1 if re.fullmatch(r'[^a-z]+', example_joined) else 0
+        
+        # generata "contains_amazing_char" feature
+        feature_dict['contains_amazing_char'] = 0 
+        if re.search(r'[óéöäûâ]', example_joined):
+            feature_dict['contains_amazing_char'] = 1
+        
         # generate "surrounded_by_paren" feature
         feature_dict['surrounded_by_paren'] = brackets_matching(example_padded, '(', ')')
 
@@ -202,12 +177,6 @@ def gen_feature_label_example_len(doc_name, text, example_len, word_tag_dict):
         # generate "has_right_period" feature
         feature_dict['has_right_period'] = has_surrounded_symbol(example_padded, 'right', '.')
         
-        # generate "all_lowercase" feature
-        feature_dict['all_lowercase'] = 1 if re.fullmatch(r'[^A-Z]+', example_joined) else 0
-        
-        # generate "all_uppercase" feature
-        feature_dict['all_uppercase'] = 1 if re.fullmatch(r'[^a-z]+', example_joined) else 0
-        
         # generate "prefix_in_whitelist" feature
         feature_dict['prefix_in_whitelist'] = 1 if remove_extras(example_padded[1]) in prefix_white_set else 0
         
@@ -219,21 +188,6 @@ def gen_feature_label_example_len(doc_name, text, example_len, word_tag_dict):
         
         # generate "suffix_in_blacklist" feature
         feature_dict['suffix_in_blacklist'] = 1 if (remove_extras(example_padded[2 + example_len])).lower() in suffix_black_set else 0
-        
-        # generate "end_with_prime_s" feature
-        # feature_dict['end_with_prime_s'] = 1 if (re.fullmatch('.*\'s', example_padded[1+example_len])) else 0
-        
-        # generate "first_last_word_capital" feature
-        feature_dict['all_word_capital'] = 1
-        for word in example:
-            if not re.fullmatch('[^a-zA-Z]*[A-Z].*', word):
-                feature_dict['all_word_capital'] = 0
-                break
-
-        # generate "surrounding_word_capital" feature
-#         left_capital = re.fullmatch('[^a-zA-Z]*[A-Z].*', example_padded[1])
-#         right_capital = re.fullmatch('[^a-zA-Z]*[A-Z].*', example_padded[2+example_len])
-#         feature_dict['surrounding_word_capital'] = 1 if (left_capital or right_capital) else 0
         
         # generate "next_word_verb" feautre, including be-verb
         feature_dict['next_word_verb'] = 0
@@ -274,25 +228,6 @@ def gen_feature_label_example_len(doc_name, text, example_len, word_tag_dict):
         # generata "num_of_extras" feature
         feature_dict['num_of_extras'] = len(re.findall(r'[^a-zA-Z\s]', middle_chars))
 
-        # generata "contains_period_in_middle" feature
-        # feature_dict['contains_period_in_middle'] = 1 if '.' in middle_chars else 0
-        
-        # generata "contains_comma_in_middle" feature
-        # feature_dict['contains_comma_in_middle'] = 1 if ',' in middle_chars else 0
-
-        # generata "contains_paren_in_middle" feature
-        # feature_dict['contains_paren_in_middle'] = 1 if re.search(r'[()]', middle_chars) else 0
-
-        # generata "contains_amazing_char" feature
-        feature_dict['contains_amazing_char'] = 0 
-        if re.search(r'[óéöäûâ]', example_joined):
-            feature_dict['contains_amazing_char'] = 1
-        
-        # generata "surrounding_word_and" feature
-        # feature_dict['surrounding_word_and'] = 0
-        # if example_padded[1] == 'and' or example_padded[-2] == 'and':
-        #     feature_dict['surrounding_word_and'] = 1 
-        
         # generate "in_blacklist" feature
         num_black_word = 0
         for word in example:
@@ -316,6 +251,28 @@ def gen_feature_label_example_len(doc_name, text, example_len, word_tag_dict):
             if word in black_set or word in prefix_suffix_set:
                 feature_dict['surrounding_black_word'] = 1
                 break
+
+        # generate "end_with_prime_s" feature
+        # feature_dict['end_with_prime_s'] = 1 if (re.fullmatch('.*\'s', example_padded[1+example_len])) else 0
+        
+        # generata "surrounding_word_and" feature
+        # feature_dict['surrounding_word_and'] = 0
+        # if example_padded[1] == 'and' or example_padded[-2] == 'and':
+        #     feature_dict['surrounding_word_and'] = 1 
+        
+        # generata "contains_period_in_middle" feature
+        # feature_dict['contains_period_in_middle'] = 1 if '.' in middle_chars else 0
+        
+        # generata "contains_comma_in_middle" feature
+        # feature_dict['contains_comma_in_middle'] = 1 if ',' in middle_chars else 0
+
+        # generata "contains_paren_in_middle" feature
+        # feature_dict['contains_paren_in_middle'] = 1 if re.search(r'[()]', middle_chars) else 0
+
+        # generate "surrounding_word_capital" feature
+#         left_capital = re.fullmatch('[^a-zA-Z]*[A-Z].*', example_padded[1])
+#         right_capital = re.fullmatch('[^a-zA-Z]*[A-Z].*', example_padded[2+example_len])
+#         feature_dict['surrounding_word_capital'] = 1 if (left_capital or right_capital) else 0
         
         # generate "tf" feature
         
@@ -339,9 +296,9 @@ def gen_feature_label_example_len(doc_name, text, example_len, word_tag_dict):
     return X_len, y_len
 
 # Generate feature matrix and label vector for a document
-def gen_feature_label_doc(doc_name):
+def gen_feature_label_doc(doc_path):
 
-    doc = open(FILTERED_DOC_DIR+doc_name, 'r')
+    doc = open(doc_path, 'r')
     text = ' '.join(doc.readlines()[2:]) # skip the title and empty line
     word_tag_dict = gen_word_prop_dict(text)
     
@@ -350,7 +307,7 @@ def gen_feature_label_doc(doc_name):
     X_len_list, y_len_list = list(), list()
 
     for example_len in range(1, MAX_EXAMPLE_LEN+1):
-        X_len, y_len = gen_feature_label_example_len(doc_name, text, example_len, word_tag_dict)
+        X_len, y_len = gen_feature_label_example_len(doc_path, text, example_len, word_tag_dict)
         X_len_list.append(X_len)
         y_len_list.append(y_len)
 
@@ -359,7 +316,6 @@ def gen_feature_label_doc(doc_name):
 
     return X_doc, y_doc
 
-pool = multiprocessing.Pool(processes=80)
 # Generate train/test feature matrix and label vector, given a list of documents
 def gen_feature_label(doc_list):
     # X = pd.DataFrame()
@@ -374,91 +330,122 @@ def gen_feature_label(doc_list):
     return X, y
 
 
-# ## Feature and Label Generation
+parser = argparse.ArgumentParser(description='Generate feature matrix and labelvector, do Cross Validation/model evaluation.')
+parser.add_argument('mode', choices=['cv', 'eval'], help='Execution mode, can be "cv" (Cross Validation) or "eval" (Model Evaluation).')
 
-# In[7]:
-
-
-feature_label_gen_start = timeit.default_timer()
-
-# documents are unordered
-doc_list = os.listdir(FILTERED_DOC_DIR)
-doc_list = [doc_name for doc_name in doc_list if doc_name.endswith('.txt')]
-
-# sort doc list
-# doc_list = sorted(doc_list, key = lambda x: int(x.split('.')[0]))
-
-doc_list = doc_list[:NUM_DOC]
-
-cutoff = int(0.67 * len(doc_list))
-
-train_doc_list = doc_list[:cutoff]
-test_doc_list = doc_list[cutoff:]
-
-X_train, y_train = gen_feature_label(train_doc_list)
-X_test, y_test = gen_feature_label(test_doc_list)
+if __name__ == '__main__':
     
-feature_label_gen_end = timeit.default_timer()
+    train_doc_list = [SET_I_DIR+doc_name for doc_name in os.listdir(SET_I_DIR) if doc_name.endswith('.txt')]
+    test_doc_list = [SET_J_DIR+doc_name for doc_name in os.listdir(SET_J_DIR) if doc_name.endswith('.txt')]
 
-# In[9]:
+    args = parser.parse_args()
+
+    if args.mode == 'cv': # Cross Validation mode
+        # print("Metrics\t\t\t\t\t\tPrecision\t\t\tRecall\t\t\tF1")
+        print("{:<30s}{:<15s}{:<15s}{:<15s}".format("Metrics", "Precision(%)", "Recall(%)", "F1(%)"))
+        list_of_Clf = [LogisticRegression, LinearSVC, GaussianNB, DecisionTreeClassifier, RandomForestClassifier]
+        score_dict = dict((Clf, []) for Clf in list_of_Clf)
+        train_doc_list = np.array(train_doc_list)
+        kf = KFold(n_splits=10)
+        fold = 0
+        for train_index, valid_index in kf.split(train_doc_list):
+            fold += 1
+            print('=============================Fold {}==============================='.format(fold))
+            train_list = train_doc_list[train_index]
+            valid_list = train_doc_list[valid_index]
+            X_train, y_train = gen_feature_label(train_list)
+            X_valid, y_valid = gen_feature_label(valid_list)
+
+            X_train_no_example = X_train.drop(['doc_name', 'example'], axis=1).astype('float')
+            X_valid_no_example = X_valid.drop(['doc_name', 'example'], axis=1).astype('float')
+
+            y_train_no_example = y_train['is_person_name'].astype('float')
+            y_valid_no_example = y_valid['is_person_name'].astype('float')
+
+            for Clf in list_of_Clf:
+                clf = Clf()
+                clf.fit(X_train_no_example, y_train_no_example)
+                y_predict = clf.predict(X_valid_no_example)
+
+                precision = precision_score(y_valid_no_example, y_predict)
+                recall = recall_score(y_valid_no_example, y_predict)
+                f1 = f1_score(y_valid_no_example, y_predict) 
+            
+                score_dict[Clf].append([precision, recall, f1])
+                
+                print('{:<30s}{:<15.2f}{:<15.2f}{:<15.2f}'.format(Clf.__name__, precision*100, recall*100, f1*100))
+        print('===========================Mean Score=============================='.format(fold))
+        for Clf in list_of_Clf:
+            scores_each_fold = np.array(score_dict[Clf])
+            scores_mean = np.mean(scores_each_fold, axis=0)
+            print('{:<30s}{:<15.2f}{:<15.2f}{:<15.2f}'.format(Clf.__name__, scores_mean[0]*100, scores_mean[1]*100, scores_mean[2]*100))
+
+    elif args.mode == 'eval': # model evaluation mode
+        pool = multiprocessing.Pool(processes=80)
+        
+        # Feature and Label Generation
+        feature_label_gen_start = timeit.default_timer()
+
+        X_train, y_train = gen_feature_label(train_doc_list)
+        X_test, y_test = gen_feature_label(test_doc_list)
+            
+        feature_label_gen_end = timeit.default_timer()
+
+        print("Feature/label generation time: {:.2f}s\n".format(feature_label_gen_end - feature_label_gen_start), file=sys.stderr)
 
 
-train_test_start = timeit.default_timer()
-X_train_no_example = X_train.drop(['doc_name', 'example'], axis=1).astype('float')
-X_test_no_example = X_test.drop(['doc_name', 'example'], axis=1).astype('float')
+        train_test_start = timeit.default_timer()
+        X_train_no_example = X_train.drop(['doc_name', 'example'], axis=1).astype('float')
+        X_test_no_example = X_test.drop(['doc_name', 'example'], axis=1).astype('float')
 
-y_train_no_example = y_train['is_person_name'].astype('float')
-y_test_no_example = y_test['is_person_name'].astype('float')
+        y_train_no_example = y_train['is_person_name'].astype('float')
+        y_test_no_example = y_test['is_person_name'].astype('float')
 
-clf = LogisticRegression(solver='lbfgs')
-# clf = RandomForestClassifier()
+        list_of_Clf = [LogisticRegression, LinearSVC, GaussianNB, DecisionTreeClassifier, RandomForestClassifier]
 
-clf.fit(X_train_no_example, y_train_no_example)
+        print('===================================================================')
+        print("{:<30s}{:<15s}{:<15s}{:<15s}".format("Metrics", "Precision(%)", "Recall(%)", "F1(%)"))
+        print('-------------------------------------------------------------------')
 
-if isinstance(clf, LogisticRegression):
-    coef_df = pd.DataFrame()
-    coef_df['features'] = X_train_no_example.columns
-    coef_df['coef'] = clf.coef_[0]
-    print(coef_df)
+        for Clf in list_of_Clf:
+            clf = Clf()
+            clf.fit(X_train_no_example, y_train_no_example)
 
-y_predict = clf.predict(X_test_no_example)
+            if DEBUG and isinstance(clf, LogisticRegression):
+                coef_df = pd.DataFrame()
+                coef_df['features'] = X_train_no_example.columns
+                coef_df['coef'] = clf.coef_[0]
+                print(coef_df)
 
-# post processing
-# y_predict[X_test['black_word_rate'] > 0] = 0
+            y_predict = clf.predict(X_test_no_example)
 
-precision = precision_score(y_test_no_example, y_predict)
-recall = recall_score(y_test_no_example, y_predict)
+            # post processing
+            # y_predict[X_test['black_word_rate'] > 0] = 0
 
-print("Precision: {:.2f}%, Recall: {:.2f}%\n".format(precision*100, recall*100))
+            precision = precision_score(y_test_no_example, y_predict)
+            recall = recall_score(y_test_no_example, y_predict)
+            f1 = f1_score(y_test_no_example, y_predict)
 
-X_test[np.not_equal(y_test_no_example, y_predict)].head(100)
+            print('{:<30s}{:<15.2f}{:<15.2f}{:<15.2f}'.format(Clf.__name__, precision*100, recall*100, f1*100))
+            
+            # for DEBUG
 
-# print(X_test[np.not_equal(y_test_no_example, y_predict)])
-# print(X_test[np.not_equal(y_test_no_example, y_predict)])
+            if DEBUG:
 
-y_false = y_test[np.not_equal(y_test_no_example, y_predict)]
-X_false = X_test[np.not_equal(y_test_no_example, y_predict)]
-# y_false['predicted_label'] = y_predict[np.not_equal(y_test_no_example, y_predict)]
+                y_false = y_test[np.not_equal(y_test_no_example, y_predict)]
+                X_false = X_test[np.not_equal(y_test_no_example, y_predict)]
+                
+                print('=============================================')
+                print('Test False Positive: ')
+                print(y_false[y_false['is_person_name'] == 0].reset_index())
 
-print('=============================================')
-print('Test False Positive: ')
-print(y_false[y_false['is_person_name'] == 0].reset_index())
-print(X_false[y_false['is_person_name'] == 0].reset_index())
+                print('=============================================')
+                print('Test False Negative: ')
+                print(y_false[y_false['is_person_name'] == 1].reset_index())
 
-# print('=============================================')
-# print('Test False Negative: ')
-# print(y_compare[y_compare['predicted_label'] == 0])
+        print('===================================================================')
 
-y_predict_train = clf.predict(X_train_no_example)
-y_false_train = y_train[np.not_equal(y_train_no_example, y_predict_train)]
+        train_test_end = timeit.default_timer()
 
-print('=============================================')
-print('Train False Positive: ')
-print(y_false_train[y_false_train['is_person_name'] == 0].reset_index())
-
-train_test_end = timeit.default_timer()
-
-print("Completed!", file=sys.stderr)
-print("Feature/label generation time: {:.2f}s".format(feature_label_gen_end - feature_label_gen_start), file=sys.stderr)
-print("Train/test time: {:.2f}s".format(train_test_end- train_test_start), file=sys.stderr)
-
+        print("\nTrain/evaluation time: {:.2f}s".format(train_test_end- train_test_start), file=sys.stderr)
+        print("Completed!", file=sys.stderr)
