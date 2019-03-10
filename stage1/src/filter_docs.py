@@ -8,7 +8,9 @@ import re
 import os
 import shutil
 
-BAD_DOC_NUM_SET = set([7, 13, 21, 38, 42, 43, 50, 58, 63, 71, 92, 118, 145, 147, 148, 160, 174, 189, 199, 213, 218, 226, 254, 269, 305, 307, 309, 322, 325, 338, 345, 354, 362, 369, 371, 376])
+# maybe can spare 393, 194
+BAD_DOC_NUM_SET = set([7, 9, 11, 13, 20, 21, 22, 27, 38, 42, 43, 50, 58, 60, 63, 71, 72, 92, 96, 104, 107, 108, 118, 145, 147, 148, 160, 173, 170, 174, 188, 189, 194, 199, 213, 214, 218, 222, 226, 252, 254, 260, 269, 271, 280, 305, 306, 307, 309, 322, 325, 327, 334, 338, 345, 353, 354, 362, 368, 369, 370, 371, 376, 379, 393])
+
 MARKED_DOC_DIR = '../marked_documents/'
 FILTERED_DOC_DIR = '../filtered_documents/'
 
@@ -16,7 +18,7 @@ def is_bad_doc(doc_path):
     """Judge whether a document is 'bad'.
     A document is 'bad' if it is in blacklist or
     it contains less than 2 mentions of person names."""
-    # print(doc_path)
+    print(doc_path)
     doc_num = int(doc_path.split('.')[0])
     if doc_num in BAD_DOC_NUM_SET:
         return True, 0
@@ -33,7 +35,7 @@ if __name__ == '__main__':
     num_mentions = 0
     for doc_name in os.listdir(MARKED_DOC_DIR):
 
-        if doc_name == '.DS_Store':
+        if not doc_name.endswith('.txt'):
             continue
         bad_doc_flag, person_name_num = is_bad_doc(doc_name)
 

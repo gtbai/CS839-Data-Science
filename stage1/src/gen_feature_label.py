@@ -1,18 +1,13 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# ## Import and Setup
-
-# In[32]:
-
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # @Date    : 2019-03-04 17:31:29
 # @Author  : Bruce Bai (guangtong.bai@wisc.edu)
 
+# ## Import and Setup # In[32]:
+
 import os
+import sys
 import pandas as pd
 import numpy as np
 import re
@@ -20,6 +15,7 @@ import timeit
 import random
 import nltk
 import multiprocessing
+import warnings
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
@@ -29,11 +25,12 @@ from sklearn.metrics import precision_score, recall_score
 pd.set_option('display.max_columns', None)  # or 1000
 pd.set_option('display.max_rows', None)  # or 1000
 pd.set_option('display.max_colwidth', -1)
-
+warnings.filterwarnings("ignore")
 
 # In[2]:
 
 
+NUM_DOC = 300
 FILTERED_DOC_DIR = '../filtered_documents/'
 MAX_EXAMPLE_LEN = 3
 PREFIX_SUFFIX_LIST_DIR = '../prefix_suffix_lists/'
@@ -165,23 +162,30 @@ label = brackets_matching(['father,', 'Dr.', '{Henry', 'Jones}.', 'The'], '{', '
 
 
 # Generate feature matrix and label vector for a document and a particular example length
-def gen_feature_label_example_len(text, example_len, word_tag_dict):
+def gen_feature_label_example_len(doc_name, text, example_len, word_tag_dict):
 #     X_len = pd.DataFrame(columns=(['example'] + FEATURE_LIST))
-    X_len = pd.DataFrame()
-    y_len = pd.DataFrame(columns=['example', 'is_person_name'])
+    # X_len = pd.DataFrame()
+    # y_len = pd.DataFrame(columns=['example', 'is_person_name'])
+    
+    feature_vectors = list()
+    labels = list()
+
     parts = text.split(' ')
     index = 2
     while index+example_len+2 <= len(parts):
         example_padded = parts[index-2:index+example_len+2]
         example = example_padded[2:2 + example_len]
         example_joined = ' '.join(example)
-        feature_dict = {'example': example_joined}
+        feature_dict = {'doc_name': doc_name, 'example': example_joined}
         
         # ========================================================================
         # "example_padded" has the following form:                              ||
         # [pad_0, pad_1, word_1, ..., word_n,                 pad_-2, pad_-1]   ||
         #  0      1      2            len-3 (example_len+1)   len-2   len-1     ||
         # ========================================================================
+
+        # generate "avg_word_len" feature
+        feature_dict['avg_word_len'] = len(remove_extras(example_joined).replace(' ', '')) / example_len
         
         # generate "surrounded_by_paren" feature
         feature_dict['surrounded_by_paren'] = brackets_matching(example_padded, '(', ')')
@@ -217,14 +221,15 @@ def gen_feature_label_example_len(text, example_len, word_tag_dict):
         feature_dict['suffix_in_blacklist'] = 1 if (remove_extras(example_padded[2 + example_len])).lower() in suffix_black_set else 0
         
         # generate "end_with_prime_s" feature
-#         feature_dict['end_with_prime_s'] = 1 if (re.fullmatch('.*\'s', example_padded[1+example_len])) else 0
+        # feature_dict['end_with_prime_s'] = 1 if (re.fullmatch('.*\'s', example_padded[1+example_len])) else 0
         
         # generate "first_last_word_capital" feature
-        # TODO change to all_word_capotal
-        first_capital = re.fullmatch('[^a-zA-Z]*[A-Z].*', example_padded[2])
-        last_capital = re.fullmatch('[^a-zA-Z]*[A-Z].*', example_padded[1+example_len])
-        feature_dict['first_last_word_capital'] = 1 if (first_capital and last_capital) else 0
-        
+        feature_dict['all_word_capital'] = 1
+        for word in example:
+            if not re.fullmatch('[^a-zA-Z]*[A-Z].*', word):
+                feature_dict['all_word_capital'] = 0
+                break
+
         # generate "surrounding_word_capital" feature
 #         left_capital = re.fullmatch('[^a-zA-Z]*[A-Z].*', example_padded[1])
 #         right_capital = re.fullmatch('[^a-zA-Z]*[A-Z].*', example_padded[2+example_len])
@@ -254,53 +259,63 @@ def gen_feature_label_example_len(text, example_len, word_tag_dict):
             if not can_be_noun:
                 feature_dict['all_noun'] = 0
                 break
-                    
-        # generata "contains_proper_noun" feature
-        feature_dict['contains_proper_noun'] = 0
+
+        # generata "proper_noun_rate" feature
+        num_proper_noun = 0
         for word in example:
             word = remove_extras(word)
             if word in word_tag_dict and 'NNP' in word_tag_dict[word]:
-                feature_dict['contains_proper_noun'] = 1
+                num_proper_noun += 1
                 break
-        
-        # generata "contains_extras_in_middle" feature
-        feature_dict['contains_extras_in_middle'] = 0
+        feature_dict['proper_noun_rate'] = num_proper_noun / example_len
+
         middle_chars = example_joined[2:-2]
-        if re.search(r'[^a-zA-Z\s]', middle_chars):
-            feature_dict['contains_extras_in_middle'] = 1
         
+        # generata "num_of_extras" feature
+        feature_dict['num_of_extras'] = len(re.findall(r'[^a-zA-Z\s]', middle_chars))
+
+        # generata "contains_period_in_middle" feature
+        # feature_dict['contains_period_in_middle'] = 1 if '.' in middle_chars else 0
+        
+        # generata "contains_comma_in_middle" feature
+        # feature_dict['contains_comma_in_middle'] = 1 if ',' in middle_chars else 0
+
+        # generata "contains_paren_in_middle" feature
+        # feature_dict['contains_paren_in_middle'] = 1 if re.search(r'[()]', middle_chars) else 0
+
         # generata "contains_amazing_char" feature
         feature_dict['contains_amazing_char'] = 0 
         if re.search(r'[óéöäûâ]', example_joined):
             feature_dict['contains_amazing_char'] = 1
         
-#         # generata "contains_prefix_suffix" feature
-#         feature_dict['contains_prefix_suffix'] = 0
-#         for word in example:
-#             for some_fix in prefix_suffix_set:
-#                 if some_fix in word:
-#                     feature_dict['contains_prefix_suffix'] = 1
-#                     break
-
         # generata "surrounding_word_and" feature
-        feature_dict['surrounding_word_and'] = 0
-        if example_padded[1] == 'and' or example_padded[-2] == 'and':
-            feature_dict['surrounding_word_and'] = 1 
+        # feature_dict['surrounding_word_and'] = 0
+        # if example_padded[1] == 'and' or example_padded[-2] == 'and':
+        #     feature_dict['surrounding_word_and'] = 1 
         
         # generate "in_blacklist" feature
-        feature_dict['in_blacklist'] = 0
+        num_black_word = 0
         for word in example:
             word = (remove_extras(word)).lower()
             if word in black_set or word in prefix_suffix_set:
-                feature_dict['in_blacklist'] = 1
+                num_black_word += 1
+        feature_dict['black_word_rate'] = num_black_word / example_len
+
+        # generate "surrounding_black_word" feature
+        feature_dict['all_black_word'] = 1
+        for word in example:
+            word = (remove_extras(word)).lower()
+            if word not in black_set and word not in prefix_suffix_set:
+                feature_dict['all_black_word'] = 0
                 break
         
         # generate "surrounding_black_word" feature
         feature_dict['surrounding_black_word'] = 0
-        if example_padded[1] in black_set or example_padded[1] in prefix_suffix_set:
-            feature_dict['surrounding_black_word'] = 1
-        if example_padded[-2] in black_set or example_padded[-2] in prefix_suffix_set:
-            feature_dict['surrounding_black_word'] = 1
+        for word in [example_padded[1], example_padded[-2]]:
+            word = (remove_extras(word)).lower()
+            if word in black_set or word in prefix_suffix_set:
+                feature_dict['surrounding_black_word'] = 1
+                break
         
         # generate "tf" feature
         
@@ -309,34 +324,43 @@ def gen_feature_label_example_len(text, example_len, word_tag_dict):
         # generate "tf-idf" feature
 
         
-        X_len = X_len.append(feature_dict, ignore_index=True)
+        feature_vectors.append(pd.DataFrame([feature_dict]))
 
         # generate label
         label = brackets_matching(example_padded, '{', '}')
-        y_len = y_len.append({'example': example_joined, 'is_person_name': label}, ignore_index = True)
+        # y_len = y_len.append({'example': example_joined, 'is_person_name': label}, ignore_index = True)
+        labels.append(pd.DataFrame([{'doc_name': doc_name, 'example': example_joined, 'is_person_name': label}]))
 
         index += 1
+
+    X_len = pd.concat(feature_vectors)
+    y_len = pd.concat(labels)
 
     return X_len, y_len
 
 # Generate feature matrix and label vector for a document
 def gen_feature_label_doc(doc_name):
-#     X_doc = pd.DataFrame(columns=(['example'] + FEATURE_LIST))
-    X_doc = pd.DataFrame()
-    y_doc = pd.DataFrame(columns=['example', 'is_person_name'])
+
     doc = open(FILTERED_DOC_DIR+doc_name, 'r')
     text = ' '.join(doc.readlines()[2:]) # skip the title and empty line
     word_tag_dict = gen_word_prop_dict(text)
     
     text = '. . ' + text + ' . .' # pad with '. .' at both ends
+
+    X_len_list, y_len_list = list(), list()
+
     for example_len in range(1, MAX_EXAMPLE_LEN+1):
-        X_len, y_len = gen_feature_label_example_len(text, example_len, word_tag_dict)
-        X_doc = X_doc.append(X_len, ignore_index=True)
-        y_doc = y_doc.append(y_len, ignore_index=True)
+        X_len, y_len = gen_feature_label_example_len(doc_name, text, example_len, word_tag_dict)
+        X_len_list.append(X_len)
+        y_len_list.append(y_len)
+
+    X_doc = pd.concat(X_len_list)
+    y_doc = pd.concat(y_len_list)
+
     return X_doc, y_doc
 
+pool = multiprocessing.Pool(processes=80)
 # Generate train/test feature matrix and label vector, given a list of documents
-pool = multiprocessing.Pool(processes=10)
 def gen_feature_label(doc_list):
     # X = pd.DataFrame()
     # y = pd.DataFrame(columns=['example', 'is_person_name'])
@@ -347,13 +371,6 @@ def gen_feature_label(doc_list):
     X = pd.concat(list(feature_matrices))
     y = pd.concat(list(label_vectors))
 
-    # for doc_name in doc_list:
-    #     if doc_name == '.DS_Store':
-    #         continue
-    #     X_doc, y_doc = gen_feature_label_doc(doc_name)
-    #     X = X.append(X_doc, ignore_index=True)
-    #     y = y.append(y_doc, ignore_index=True)
-        
     return X, y
 
 
@@ -362,17 +379,18 @@ def gen_feature_label(doc_list):
 # In[7]:
 
 
-start = timeit.default_timer()
+feature_label_gen_start = timeit.default_timer()
 
 # documents are unordered
 doc_list = os.listdir(FILTERED_DOC_DIR)
+doc_list = [doc_name for doc_name in doc_list if doc_name.endswith('.txt')]
 
-# documents are ordered
-# doc_list = sorted(os.listdir(FILTERED_DOC_DIR), key = lambda x: int(x.split('.')[0]))
+# sort doc list
+# doc_list = sorted(doc_list, key = lambda x: int(x.split('.')[0]))
 
-doc_list = doc_list[:5]
+doc_list = doc_list[:NUM_DOC]
 
-cutoff = int(0.66 * len(doc_list))
+cutoff = int(0.67 * len(doc_list))
 
 train_doc_list = doc_list[:cutoff]
 test_doc_list = doc_list[cutoff:]
@@ -380,27 +398,21 @@ test_doc_list = doc_list[cutoff:]
 X_train, y_train = gen_feature_label(train_doc_list)
 X_test, y_test = gen_feature_label(test_doc_list)
     
-stop = timeit.default_timer()
-
-print("Time used: ", stop - start)
-
-# with pd.option_context('display.max_rows', None, 'display.max_columns', None):
-#     print(X.head(1000), y.head(1000))
-# X.head(1000)
-# y.head(1000)
-
+feature_label_gen_end = timeit.default_timer()
 
 # In[9]:
 
 
-X_train_no_example = X_train.drop(['example'], axis=1).astype('int')
-X_test_no_example = X_test.drop(['example'], axis=1).astype('int')
+train_test_start = timeit.default_timer()
+X_train_no_example = X_train.drop(['doc_name', 'example'], axis=1).astype('float')
+X_test_no_example = X_test.drop(['doc_name', 'example'], axis=1).astype('float')
 
-y_train_no_example = y_train['is_person_name'].astype('int')
-y_test_no_example = y_test['is_person_name'].astype('int')
+y_train_no_example = y_train['is_person_name'].astype('float')
+y_test_no_example = y_test['is_person_name'].astype('float')
 
 clf = LogisticRegression(solver='lbfgs')
 # clf = RandomForestClassifier()
+
 clf.fit(X_train_no_example, y_train_no_example)
 
 if isinstance(clf, LogisticRegression):
@@ -411,7 +423,8 @@ if isinstance(clf, LogisticRegression):
 
 y_predict = clf.predict(X_test_no_example)
 
-
+# post processing
+# y_predict[X_test['black_word_rate'] > 0] = 0
 
 precision = precision_score(y_test_no_example, y_predict)
 recall = recall_score(y_test_no_example, y_predict)
@@ -425,12 +438,12 @@ X_test[np.not_equal(y_test_no_example, y_predict)].head(100)
 
 y_false = y_test[np.not_equal(y_test_no_example, y_predict)]
 X_false = X_test[np.not_equal(y_test_no_example, y_predict)]
-y_false['predicted_label'] = y_predict[np.not_equal(y_test_no_example, y_predict)]
+# y_false['predicted_label'] = y_predict[np.not_equal(y_test_no_example, y_predict)]
 
 print('=============================================')
 print('Test False Positive: ')
-print(y_false[y_false['predicted_label'] == 1])
-# print(X_false[y_false['predicted_label'] == 1])
+print(y_false[y_false['is_person_name'] == 0].reset_index())
+print(X_false[y_false['is_person_name'] == 0].reset_index())
 
 # print('=============================================')
 # print('Test False Negative: ')
@@ -438,9 +451,14 @@ print(y_false[y_false['predicted_label'] == 1])
 
 y_predict_train = clf.predict(X_train_no_example)
 y_false_train = y_train[np.not_equal(y_train_no_example, y_predict_train)]
-y_false_train['predicted_label'] = y_predict_train[np.not_equal(y_train_no_example, y_predict_train)]
 
 print('=============================================')
 print('Train False Positive: ')
-print(y_false_train[y_false_train['predicted_label'] == 1])
+print(y_false_train[y_false_train['is_person_name'] == 0].reset_index())
+
+train_test_end = timeit.default_timer()
+
+print("Completed!", file=sys.stderr)
+print("Feature/label generation time: {:.2f}s".format(feature_label_gen_end - feature_label_gen_start), file=sys.stderr)
+print("Train/test time: {:.2f}s".format(train_test_end- train_test_start), file=sys.stderr)
 
