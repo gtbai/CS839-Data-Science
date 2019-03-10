@@ -1,0 +1,3 @@
+# The Newsroom
+
+A news team attempts to create a news show that reports the news in an ethical and reasonable way. They take real, newsworthy events from our world as they're happening (such as bin {Laden}'s justified killing, NSA spying, etc) and report on them as if they were an actual news station that followed rational and moral guidelines, in a biting criticism of our popular press and a clever blurring of art and reality.

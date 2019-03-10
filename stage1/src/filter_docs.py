@@ -13,6 +13,8 @@ BAD_DOC_NUM_SET = set([7, 9, 11, 13, 20, 21, 22, 27, 38, 42, 43, 50, 58, 60, 63,
 
 MARKED_DOC_DIR = '../marked_documents/'
 FILTERED_DOC_DIR = '../filtered_documents/'
+SET_I_DIR = '../set_I/'
+SET_J_DIR = '../set_J/'
 
 def is_bad_doc(doc_path):
     """Judge whether a document is 'bad'.
@@ -32,7 +34,9 @@ def is_bad_doc(doc_path):
     return False, person_name_num
 
 if __name__ == '__main__':
+    num_docs = 0
     num_mentions = 0
+
     for doc_name in os.listdir(MARKED_DOC_DIR):
 
         if not doc_name.endswith('.txt'):
@@ -46,10 +50,16 @@ if __name__ == '__main__':
             except Exception as e:
                 pass
         else:
+            num_docs += 1
+            if num_docs > 300:
+                break
             num_mentions += person_name_num
-            shutil.copyfile(MARKED_DOC_DIR+doc_name, FILTERED_DOC_DIR+doc_name)
+            dest_dir = SET_I_DIR if num_docs <= 200 else SET_J_DIR
+            shutil.copyfile(MARKED_DOC_DIR+doc_name, dest_dir+doc_name)
+            # shutil.copyfile(MARKED_DOC_DIR+doc_name, FILTERED_DOC_DIR+doc_name)
+
     
     print('After filtering, there are {} docs, {} mentions'
-        .format(len(os.listdir(FILTERED_DOC_DIR)), num_mentions))
+        .format(num_docs, num_mentions))
 
 # {[^}]*?\.[^}]*?}
