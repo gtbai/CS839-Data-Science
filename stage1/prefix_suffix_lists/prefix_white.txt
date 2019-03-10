@@ -1,3 +1,8 @@
+Mammy
+Singer
+Motorist
+Scientist
+Prime
 named
 agent
 agents
@@ -19,7 +24,6 @@ Sergeant
 Detective
 Detectives
 nurse
-Prince
 Pirate
 Lt
 Lt.
@@ -32,11 +36,14 @@ cousin
 King
 Mssrs.
 Lord
+Lords
 Little
 Mayor
 American
 named
 called
+Prince
+Princes
 Princess
 wife
 sister
@@ -82,6 +89,7 @@ brothers
 attorney
 Sister
 secretary
+Secretary
 boy
 boys
 cop
@@ -112,3 +120,5 @@ trainee
 God
 girlfriend
 Pianist
+Lady
+Minister

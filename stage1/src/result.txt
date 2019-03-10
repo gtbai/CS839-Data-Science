@@ -1,0 +1,654 @@
+                  features      coef
+0   all_black_word         -0.214894
+1   all_lowercase          -3.911302
+2   all_noun                1.553675
+3   all_uppercase          -3.344985
+4   all_word_capital        4.590896
+5   avg_word_len            0.110421
+6   black_word_rate        -6.119195
+7   contains_amazing_char   3.318804
+8   has_left_comma          0.823112
+9   has_left_period        -2.114883
+10  has_right_comma         0.607402
+11  has_right_period       -0.196975
+12  next_word_verb          0.306708
+13  num_of_extras          -1.827427
+14  prefix_in_blacklist    -2.523853
+15  prefix_in_whitelist     1.524797
+16  proper_noun_rate        2.484994
+17  suffix_in_blacklist    -1.177829
+18  suffix_in_whitelist     1.082689
+19  surrounded_by_paren     3.703156
+20  surrounding_black_word -0.827804
+Precision: 91.53%, Recall: 90.34%
+
+=============================================
+Test False Positive: 
+    index doc_name                 example  is_person_name
+0   0      387.txt  Stones                  0             
+1   0      315.txt  Democratic              0             
+2   0      227.txt  Gretchen,               0             
+3   0      4.txt    Begins,                 0             
+4   0      4.txt    {Batman} Begins,        0             
+5   0      250.txt  Rule.                   0             
+6   0      115.txt  Life"                   0             
+7   0      341.txt  "Duchess."              0             
+8   0      181.txt  Did                     0             
+9   0      181.txt  Did {Nick               0             
+10  0      181.txt  Did {Nick Dunne}        0             
+11  0      285.txt  U-boats                 0             
+12  0      142.txt  Jr.                     0             
+13  0      23.txt   Behavioral              0             
+14  0      262.txt  Emphasis                0             
+15  0      150.txt  Wall                    0             
+16  0      131.txt  Water                   0             
+17  0      131.txt  Power,                  0             
+18  0      183.txt  While                   0             
+19  0      183.txt  Bomb":                  0             
+20  0      183.txt  {Pasternak}. Soon       0             
+21  0      180.txt  Berk,                   0             
+22  0      180.txt  Regardless,             0             
+23  0      272.txt  Stone                   0             
+24  0      320.txt  Things                  0             
+25  0      320.txt  Good Things             0             
+26  0      112.txt  Grail.                  0             
+27  0      112.txt  Dr.                     0             
+28  0      40.txt   Security                0             
+29  0      137.txt  Allied                  0             
+30  0      99.txt   Kid                     0             
+31  0      99.txt   Kid                     0             
+32  0      99.txt   Kid                     0             
+33  0      205.txt  Formula                 0             
+34  0      228.txt  Nevertheless,           0             
+35  0      124.txt  Incendies               0             
+36  0      256.txt  Det.                    0             
+37  0      256.txt  Det.                    0             
+38  0      93.txt   Pictures'               0             
+39  0      270.txt  Reconstruction.         0             
+40  0      270.txt  Visuals                 0             
+41  0      340.txt  Downton                 0             
+42  0      255.txt  Stage                   0             
+43  0      255.txt  Stage III               0             
+44  0      73.txt   "Rosebud".              0             
+45  0      15.txt   Ring.                   0             
+46  0      80.txt   Suite                   0             
+47  0      80.txt   Op.                     0             
+48  0      48.txt   Emperor,                0             
+49  0      48.txt   Emperor                 0             
+50  0      85.txt   Imperial                0             
+51  0      85.txt   Engineering,            0             
+52  0      352.txt  Parks                   0             
+53  0      352.txt  Recreation              0             
+54  0      352.txt  Recreation Department,  0             
+55  0      377.txt  Craggy                  0             
+56  0      377.txt  Craggy                  0             
+57  0      217.txt  Sue                     0             
+58  0      397.txt  Yes                     0             
+59  0      397.txt  Cabinet                 0             
+60  0      397.txt  Yes Minister,           0             
+61  0      263.txt  Water                   0             
+62  0      263.txt  Fire                    0             
+63  0      263.txt  Fire                    0             
+    index  all_black_word  all_lowercase  all_noun  all_uppercase  \
+0   0      0               0              1         0               
+1   0      0               0              1         0               
+2   0      0               0              1         0               
+3   0      0               0              1         0               
+4   0      0               0              1         0               
+5   0      0               0              1         0               
+6   0      0               0              1         0               
+7   0      0               0              1         0               
+8   0      0               0              1         0               
+9   0      0               0              1         0               
+10  0      0               0              1         0               
+11  0      0               0              0         0               
+12  0      0               0              0         0               
+13  0      0               0              1         0               
+14  0      0               0              1         0               
+15  0      0               0              1         0               
+16  0      0               0              1         0               
+17  0      0               0              1         0               
+18  0      0               0              1         0               
+19  0      0               0              1         0               
+20  0      0               0              1         0               
+21  0      0               0              1         0               
+22  0      0               0              1         0               
+23  0      0               0              1         0               
+24  0      0               0              1         0               
+25  0      0               0              0         0               
+26  0      0               0              1         0               
+27  0      0               0              0         0               
+28  0      0               0              1         0               
+29  0      0               0              1         0               
+30  0      0               0              1         0               
+31  0      0               0              1         0               
+32  0      0               0              1         0               
+33  0      0               0              1         0               
+34  0      0               0              1         0               
+35  0      0               0              1         0               
+36  0      0               0              1         0               
+37  0      0               0              1         0               
+38  0      0               0              1         0               
+39  0      0               0              1         0               
+40  0      0               0              1         0               
+41  0      0               0              1         0               
+42  0      0               0              1         0               
+43  0      0               0              1         0               
+44  0      0               0              1         0               
+45  0      0               0              1         0               
+46  0      0               0              1         0               
+47  0      0               0              1         0               
+48  0      0               0              1         0               
+49  0      0               0              1         0               
+50  0      0               0              1         0               
+51  0      0               0              1         0               
+52  0      0               0              1         0               
+53  0      0               0              1         0               
+54  0      0               0              1         0               
+55  0      0               0              1         0               
+56  0      0               0              1         0               
+57  0      0               0              1         0               
+58  0      0               0              1         0               
+59  0      0               0              1         0               
+60  0      0               0              1         0               
+61  0      0               0              1         0               
+62  0      0               0              1         0               
+63  0      0               0              1         0               
+
+    all_word_capital  avg_word_len  black_word_rate  contains_amazing_char  \
+0   1                 6.0           0.0              0                       
+1   1                 10.0          0.0              0                       
+2   1                 8.0           0.0              0                       
+3   1                 6.0           0.0              0                       
+4   1                 6.0           0.0              0                       
+5   1                 4.0           0.0              0                       
+6   1                 4.0           0.0              0                       
+7   1                 7.0           0.0              0                       
+8   1                 3.0           0.0              0                       
+9   1                 3.5           0.0              0                       
+10  1                 4.0           0.0              0                       
+11  1                 6.0           0.0              0                       
+12  1                 2.0           0.0              0                       
+13  1                 10.0          0.0              0                       
+14  1                 8.0           0.0              0                       
+15  1                 4.0           0.0              0                       
+16  1                 5.0           0.0              0                       
+17  1                 5.0           0.0              0                       
+18  1                 5.0           0.0              0                       
+19  1                 4.0           0.0              0                       
+20  1                 6.5           0.0              0                       
+21  1                 4.0           0.0              0                       
+22  1                 10.0          0.0              0                       
+23  1                 5.0           0.0              0                       
+24  1                 6.0           0.0              0                       
+25  1                 5.0           0.0              0                       
+26  1                 5.0           0.0              0                       
+27  1                 2.0           0.0              0                       
+28  1                 8.0           0.0              0                       
+29  1                 6.0           0.0              0                       
+30  1                 3.0           0.0              0                       
+31  1                 3.0           0.0              0                       
+32  1                 3.0           0.0              0                       
+33  1                 7.0           0.0              0                       
+34  1                 12.0          0.0              0                       
+35  1                 9.0           0.0              0                       
+36  1                 3.0           0.0              0                       
+37  1                 3.0           0.0              0                       
+38  1                 8.0           0.0              0                       
+39  1                 14.0          0.0              0                       
+40  1                 7.0           0.0              0                       
+41  1                 7.0           0.0              0                       
+42  1                 5.0           0.0              0                       
+43  1                 4.0           0.0              0                       
+44  1                 7.0           0.0              0                       
+45  1                 4.0           0.0              0                       
+46  1                 5.0           0.0              0                       
+47  1                 2.0           0.0              0                       
+48  1                 7.0           0.0              0                       
+49  1                 7.0           0.0              0                       
+50  1                 8.0           0.0              0                       
+51  1                 11.0          0.0              0                       
+52  1                 5.0           0.0              0                       
+53  1                 10.0          0.0              0                       
+54  1                 10.0          0.5              0                       
+55  1                 6.0           0.0              0                       
+56  1                 6.0           0.0              0                       
+57  1                 3.0           0.0              0                       
+58  1                 3.0           0.0              0                       
+59  1                 7.0           0.0              0                       
+60  1                 5.5           0.5              0                       
+61  1                 5.0           0.0              0                       
+62  1                 4.0           0.0              0                       
+63  1                 4.0           0.0              0                       
+
+   doc_name                 example  has_left_comma  has_left_period  \
+0   387.txt  Stones                  0               0                 
+1   315.txt  Democratic              0               0                 
+2   227.txt  Gretchen,               0               0                 
+3   4.txt    Begins,                 0               0                 
+4   4.txt    {Batman} Begins,        0               0                 
+5   250.txt  Rule.                   0               0                 
+6   115.txt  Life"                   0               0                 
+7   341.txt  "Duchess."              0               0                 
+8   181.txt  Did                     0               0                 
+9   181.txt  Did {Nick               0               0                 
+10  181.txt  Did {Nick Dunne}        0               0                 
+11  285.txt  U-boats                 0               0                 
+12  142.txt  Jr.                     1               0                 
+13  23.txt   Behavioral              0               0                 
+14  262.txt  Emphasis                0               1                 
+15  150.txt  Wall                    0               0                 
+16  131.txt  Water                   0               0                 
+17  131.txt  Power,                  0               0                 
+18  183.txt  While                   0               0                 
+19  183.txt  Bomb":                  0               0                 
+20  183.txt  {Pasternak}. Soon       0               0                 
+21  180.txt  Berk,                   0               0                 
+22  180.txt  Regardless,             0               1                 
+23  272.txt  Stone                   0               0                 
+24  320.txt  Things                  0               0                 
+25  320.txt  Good Things             0               0                 
+26  112.txt  Grail.                  0               0                 
+27  112.txt  Dr.                     1               0                 
+28  40.txt   Security                0               0                 
+29  137.txt  Allied                  0               0                 
+30  99.txt   Kid                     0               0                 
+31  99.txt   Kid                     0               0                 
+32  99.txt   Kid                     0               0                 
+33  205.txt  Formula                 0               0                 
+34  228.txt  Nevertheless,           0               1                 
+35  124.txt  Incendies               1               0                 
+36  256.txt  Det.                    1               0                 
+37  256.txt  Det.                    0               0                 
+38  93.txt   Pictures'               0               0                 
+39  270.txt  Reconstruction.         0               0                 
+40  270.txt  Visuals                 0               0                 
+41  340.txt  Downton                 0               0                 
+42  255.txt  Stage                   0               0                 
+43  255.txt  Stage III               0               0                 
+44  73.txt   "Rosebud".              0               0                 
+45  15.txt   Ring.                   0               0                 
+46  80.txt   Suite                   0               0                 
+47  80.txt   Op.                     0               0                 
+48  48.txt   Emperor,                0               0                 
+49  48.txt   Emperor                 0               0                 
+50  85.txt   Imperial                0               0                 
+51  85.txt   Engineering,            0               0                 
+52  352.txt  Parks                   0               0                 
+53  352.txt  Recreation              0               0                 
+54  352.txt  Recreation Department,  0               0                 
+55  377.txt  Craggy                  0               0                 
+56  377.txt  Craggy                  0               0                 
+57  217.txt  Sue                     0               0                 
+58  397.txt  Yes                     0               0                 
+59  397.txt  Cabinet                 0               0                 
+60  397.txt  Yes Minister,           0               0                 
+61  263.txt  Water                   0               0                 
+62  263.txt  Fire                    0               0                 
+63  263.txt  Fire                    0               0                 
+
+    has_right_comma  has_right_period  next_word_verb  num_of_extras  \
+0   0                0                 0               0               
+1   0                0                 0               0               
+2   1                0                 0               0               
+3   1                0                 0               0               
+4   1                0                 0               1               
+5   0                1                 0               0               
+6   0                0                 0               0               
+7   0                0                 0               0               
+8   0                0                 0               0               
+9   0                0                 0               1               
+10  0                0                 1               1               
+11  0                0                 0               0               
+12  0                1                 1               0               
+13  0                0                 0               0               
+14  0                0                 1               0               
+15  0                0                 0               0               
+16  0                0                 0               0               
+17  1                0                 0               0               
+18  0                0                 1               0               
+19  0                0                 0               0               
+20  0                0                 0               2               
+21  1                0                 0               0               
+22  1                0                 0               0               
+23  0                0                 0               0               
+24  0                0                 0               0               
+25  0                0                 0               0               
+26  0                1                 0               0               
+27  0                1                 0               0               
+28  0                0                 0               0               
+29  0                0                 0               0               
+30  0                0                 0               0               
+31  0                0                 0               0               
+32  0                0                 0               0               
+33  0                0                 0               0               
+34  1                0                 0               0               
+35  0                0                 1               0               
+36  0                1                 0               0               
+37  0                1                 0               0               
+38  0                0                 0               0               
+39  0                1                 0               0               
+40  0                0                 1               0               
+41  0                0                 0               0               
+42  0                0                 0               0               
+43  0                0                 0               0               
+44  0                1                 0               0               
+45  0                1                 0               0               
+46  0                0                 0               0               
+47  0                1                 0               0               
+48  1                0                 0               0               
+49  0                0                 1               0               
+50  0                0                 0               0               
+51  1                0                 0               0               
+52  0                0                 0               0               
+53  0                0                 0               0               
+54  1                0                 1               0               
+55  0                0                 0               0               
+56  0                0                 0               0               
+57  0                0                 1               0               
+58  0                0                 0               0               
+59  0                0                 0               0               
+60  1                0                 0               0               
+61  0                0                 0               0               
+62  0                0                 0               0               
+63  0                0                 0               0               
+
+    prefix_in_blacklist  prefix_in_whitelist  proper_noun_rate  \
+0   0                    0                    0.000000           
+1   0                    0                    0.000000           
+2   1                    0                    0.000000           
+3   0                    0                    0.000000           
+4   0                    0                    0.500000           
+5   0                    0                    0.000000           
+6   0                    0                    0.000000           
+7   0                    0                    0.000000           
+8   0                    0                    0.000000           
+9   0                    0                    0.500000           
+10  0                    0                    0.333333           
+11  0                    0                    0.000000           
+12  0                    0                    0.000000           
+13  0                    0                    0.000000           
+14  0                    0                    0.000000           
+15  0                    0                    0.000000           
+16  0                    0                    0.000000           
+17  0                    0                    0.000000           
+18  0                    0                    0.000000           
+19  0                    0                    0.000000           
+20  0                    1                    0.500000           
+21  0                    0                    0.000000           
+22  0                    0                    0.000000           
+23  0                    0                    0.000000           
+24  0                    0                    0.000000           
+25  0                    0                    0.000000           
+26  0                    0                    0.000000           
+27  0                    1                    0.000000           
+28  0                    0                    0.000000           
+29  0                    0                    0.000000           
+30  1                    0                    1.000000           
+31  1                    0                    1.000000           
+32  1                    0                    1.000000           
+33  0                    0                    0.000000           
+34  0                    0                    0.000000           
+35  0                    0                    0.000000           
+36  0                    0                    1.000000           
+37  0                    0                    1.000000           
+38  0                    0                    0.000000           
+39  0                    0                    0.000000           
+40  0                    0                    0.000000           
+41  0                    0                    0.000000           
+42  0                    0                    0.000000           
+43  0                    0                    0.000000           
+44  0                    0                    0.000000           
+45  0                    0                    0.000000           
+46  0                    0                    0.000000           
+47  0                    0                    0.000000           
+48  0                    0                    1.000000           
+49  1                    0                    1.000000           
+50  0                    0                    0.000000           
+51  0                    0                    0.000000           
+52  0                    0                    0.000000           
+53  0                    0                    0.000000           
+54  0                    0                    0.000000           
+55  0                    0                    1.000000           
+56  0                    0                    1.000000           
+57  0                    0                    1.000000           
+58  0                    0                    0.000000           
+59  0                    0                    0.000000           
+60  0                    0                    0.500000           
+61  0                    0                    0.000000           
+62  1                    0                    1.000000           
+63  1                    0                    1.000000           
+
+    suffix_in_blacklist  suffix_in_whitelist  surrounded_by_paren  \
+0   0                    0                    0                     
+1   0                    0                    0                     
+2   0                    1                    0                     
+3   0                    0                    0                     
+4   0                    0                    0                     
+5   0                    0                    0                     
+6   0                    0                    0                     
+7   0                    0                    0                     
+8   0                    0                    0                     
+9   0                    0                    0                     
+10  0                    0                    0                     
+11  0                    0                    0                     
+12  0                    0                    0                     
+13  0                    0                    0                     
+14  0                    1                    0                     
+15  0                    0                    0                     
+16  0                    0                    0                     
+17  0                    0                    0                     
+18  0                    0                    0                     
+19  0                    0                    0                     
+20  0                    0                    0                     
+21  0                    0                    0                     
+22  0                    0                    0                     
+23  0                    0                    0                     
+24  0                    0                    0                     
+25  0                    0                    0                     
+26  0                    0                    0                     
+27  0                    0                    0                     
+28  0                    0                    0                     
+29  0                    0                    0                     
+30  0                    0                    0                     
+31  0                    0                    0                     
+32  0                    0                    0                     
+33  0                    0                    0                     
+34  0                    0                    0                     
+35  0                    0                    0                     
+36  0                    0                    0                     
+37  0                    0                    0                     
+38  0                    0                    0                     
+39  0                    0                    0                     
+40  0                    0                    0                     
+41  0                    0                    0                     
+42  0                    0                    0                     
+43  0                    0                    0                     
+44  0                    0                    0                     
+45  0                    0                    0                     
+46  0                    0                    0                     
+47  0                    0                    0                     
+48  0                    0                    0                     
+49  0                    0                    0                     
+50  0                    0                    0                     
+51  0                    0                    0                     
+52  0                    0                    0                     
+53  0                    0                    0                     
+54  0                    0                    0                     
+55  0                    0                    0                     
+56  0                    0                    0                     
+57  0                    0                    0                     
+58  0                    0                    0                     
+59  0                    0                    0                     
+60  0                    0                    0                     
+61  0                    0                    0                     
+62  0                    0                    0                     
+63  0                    0                    0                     
+
+    surrounding_black_word  
+0   0                       
+1   1                       
+2   1                       
+3   0                       
+4   0                       
+5   1                       
+6   1                       
+7   1                       
+8   0                       
+9   0                       
+10  0                       
+11  0                       
+12  0                       
+13  1                       
+14  1                       
+15  1                       
+16  0                       
+17  0                       
+18  0                       
+19  1                       
+20  1                       
+21  1                       
+22  0                       
+23  0                       
+24  0                       
+25  0                       
+26  1                       
+27  1                       
+28  0                       
+29  0                       
+30  1                       
+31  1                       
+32  1                       
+33  0                       
+34  1                       
+35  0                       
+36  0                       
+37  0                       
+38  1                       
+39  1                       
+40  0                       
+41  1                       
+42  0                       
+43  0                       
+44  1                       
+45  0                       
+46  1                       
+47  1                       
+48  0                       
+49  1                       
+50  1                       
+51  0                       
+52  1                       
+53  1                       
+54  0                       
+55  1                       
+56  1                       
+57  0                       
+58  1                       
+59  1                       
+60  0                       
+61  1                       
+62  1                       
+63  1                       
+=============================================
+Train False Positive: 
+    index doc_name                  example  is_person_name
+0   0      390.txt  Dr.                      0             
+1   0      390.txt  Thirteen                 0             
+2   0      390.txt  Love.                    0             
+3   0      224.txt  Falcon.                  0             
+4   0      152.txt  Great                    0             
+5   0      152.txt  Great Britain.           0             
+6   0      167.txt  Gran                     0             
+7   0      167.txt  Gran                     0             
+8   0      219.txt  Gang.                    0             
+9   0      219.txt  "Let's                   0             
+10  0      237.txt  White                    0             
+11  0      286.txt  Python                   0             
+12  0      154.txt  Mixed                    0             
+13  0      154.txt  (MMA)                    0             
+14  0      154.txt  MMA                      0             
+15  0      300.txt  B.C.)                    0             
+16  0      392.txt  Boardwalk                0             
+17  0      253.txt  Kingdoms.                0             
+18  0      231.txt  Live                     0             
+19  0      231.txt  Aid.                     0             
+20  0      231.txt  Live Aid.                0             
+21  0      276.txt  Show                     0             
+22  0      25.txt   Concentration            0             
+23  0      102.txt  Mr.                      0             
+24  0      102.txt  Bear                     0             
+25  0      168.txt  Barrier                  0             
+26  0      381.txt  Administrative           0             
+27  0      381.txt  Affairs.                 0             
+28  0      381.txt  Permanent                0             
+29  0      381.txt  Administrative Affairs.  0             
+30  0      184.txt  Humans",                 0             
+31  0      332.txt  Social                   0             
+32  0      332.txt  Affairs,                 0             
+33  0      332.txt  Social Affairs,          0             
+34  0      171.txt  Shutter                  0             
+35  0      335.txt  Gear                     0             
+36  0      134.txt  Lime's                   0             
+37  0      257.txt  Cosmos.                  0             
+38  0      233.txt  Groundhog                0             
+39  0      41.txt   Investigation            0             
+40  0      120.txt  Big                      0             
+41  0      120.txt  Cowboys                  0             
+42  0      120.txt  Dissatisfied             0             
+43  0      120.txt  Kid',                    0             
+44  0      45.txt   Professional             0             
+45  0      163.txt  Twelve                   0             
+46  0      163.txt  Oaks.                    0             
+47  0      163.txt  Twelve Oaks.             0             
+48  0      175.txt  Nevertheless,            0             
+49  0      294.txt  Normal,                  0             
+50  0      294.txt  Weird.                   0             
+51  0      53.txt   Told                     0             
+52  0      225.txt  Poets                    0             
+53  0      31.txt   Row                      0             
+54  0      316.txt  Everything               0             
+55  0      215.txt  Bride"                   0             
+56  0      221.txt  Years                    0             
+57  0      179.txt  Honor                    0             
+58  0      232.txt  Kong,                    0             
+59  0      135.txt  Howl's                   0             
+60  0      212.txt  Cofi.                    0             
+61  0      18.txt   Matrix.                  0             
+62  0      18.txt   Matrix                   0             
+63  0      165.txt  Brainerd,                0             
+64  0      165.txt  Brainerd, MN             0             
+65  0      388.txt  Reaper                   0             
+66  0      67.txt   Knight,                  0             
+67  0      55.txt   WWI,                     0             
+68  0      82.txt   Commonwealth             0             
+69  0      82.txt   Games,                   0             
+70  0      82.txt   Commonwealth Games,      0             
+71  0      24.txt   Eve,                     0             
+72  0      114.txt  Scout                    0             
+73  0      211.txt  "Spotlight"              0             
+74  0      203.txt  What                     0             
+75  0      203.txt  As                       0             
+76  0      247.txt  Goa.                     0             
+77  0      65.txt   Despite                  0             
+78  0      65.txt   Miss {Plimsoll},         0             
+79  0      394.txt  Lies                     0             
+80  0      57.txt   Culture                  0             
+81  0      76.txt   Limited                  0             
+82  0      76.txt   Mt.                      0             
+83  0      46.txt   While                    0             
+84  0      177.txt  Mrs.                     0             
+85  0      396.txt  Controversal             0             
+86  0      37.txt   Mrs.                     0             
+87  0      329.txt  "Breaking                0             
+88  0      329.txt  Bad"                     0             
+89  0      329.txt  "Breaking Bad"           0             
+90  0      350.txt  Trek                     0             
+91  0      119.txt  Armies                   0             
+92  0      119.txt  "Downfall"               0             
+93  0      216.txt  Wind                     0             
+94  0      216.txt  Wind                     0             
+95  0      363.txt  Side                     0             
+96  0      268.txt  Twilight                 0             
+97  0      268.txt  Twilight                 0             
+98  0      375.txt  Ones"                    0             
