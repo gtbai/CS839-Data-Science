@@ -11,10 +11,9 @@ import shutil
 # maybe can spare 393, 194
 BAD_DOC_NUM_SET = set([7, 9, 11, 13, 20, 21, 22, 27, 38, 42, 43, 50, 58, 60, 63, 71, 72, 92, 96, 104, 107, 108, 118, 145, 147, 148, 160, 173, 170, 174, 188, 189, 194, 199, 213, 214, 218, 222, 226, 252, 254, 260, 269, 271, 280, 305, 306, 307, 309, 322, 325, 327, 334, 338, 345, 353, 354, 362, 368, 369, 370, 371, 376, 379, 393])
 
-MARKED_DOC_DIR = '../marked_documents/'
-FILTERED_DOC_DIR = '../filtered_documents/'
-SET_I_DIR = '../set_I/'
-SET_J_DIR = '../set_J/'
+MARKED_DOC_DIR = '../documents/marked_documents/'
+SET_I_DIR = '../documents/set_I/'
+SET_J_DIR = '../documents/set_J/'
 
 def is_bad_doc(doc_path):
     """Judge whether a document is 'bad'.
@@ -45,10 +44,6 @@ if __name__ == '__main__':
 
         if bad_doc_flag:
             print('Filtering out {}'.format(doc_name))
-            try:
-                os.remove(FILTERED_DOC_DIR+doc_name)
-            except Exception as e:
-                pass
         else:
             num_docs += 1
             if num_docs > 300:
