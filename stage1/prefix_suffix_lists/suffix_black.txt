@@ -1,4 +1,4 @@
-Corperation
+Corporation
 Motel
 Prize
 Inc.
@@ -6,3 +6,4 @@ Colonies
 Church
 High
 University
+Day

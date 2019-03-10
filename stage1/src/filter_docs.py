@@ -8,7 +8,7 @@ import re
 import os
 import shutil
 
-BAD_DOC_NUM_SET = set([13, 21, 58, 63, 71, 118, 160, 213, 254, 305, 307, 309, 322, 325, 345])
+BAD_DOC_NUM_SET = set([7, 13, 21, 38, 42, 43, 50, 58, 63, 71, 92, 118, 145, 147, 148, 160, 174, 189, 199, 213, 218, 226, 254, 269, 305, 307, 309, 322, 325, 338, 345, 354, 362, 369, 371, 376])
 MARKED_DOC_DIR = '../marked_documents/'
 FILTERED_DOC_DIR = '../filtered_documents/'
 
