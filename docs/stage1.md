@@ -17,5 +17,5 @@
 + [PDF Report](https://github.com/gtbai/CS839-Data-Science/blob/master/stage1/Report.pdf)
 
 ## Downloads
-[Download Zip File](https://github.com/gtbai/CS839-Data-Science/blob/master/stage1/compressed_files.zip){: .btn }
+[Download Zip File](https://github.com/gtbai/CS839-Data-Science/raw/master/stage1/compressed_files.zip){: .btn }
 
