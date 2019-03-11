@@ -8,5 +8,5 @@
 
 ## Links to Project Stages
 
-+ [Stage 0: From Team]() (*completed*)
-+ [Stage 1: Information extraction from natural text]() (*ongoing*)
++ Stage 0: From Team (*completed*)
++ [Stage 1: Information extraction from natural text](https://gtbai.github.io/CS839-Data-Science/stage1) (*ongoing*)
