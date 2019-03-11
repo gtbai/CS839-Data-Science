@@ -230,28 +230,28 @@ def gen_feature_label_example_len(doc_path, text, example_len, word_tag_dict):
         feature_dict['num_of_extras'] = len(re.findall(r'[^a-zA-Z\s]', middle_chars))
 
         # generate "black_word_rate" feature
-        # num_black_word = 0
-        # for word in example:
-        #     word = (remove_extras(word)).lower()
-        #     if word in black_set or word in prefix_suffix_set:
-        #         num_black_word += 1
-        # feature_dict['black_word_rate'] = num_black_word / example_len
+        num_black_word = 0
+        for word in example:
+            word = (remove_extras(word)).lower()
+            if word in black_set or word in prefix_suffix_set:
+                num_black_word += 1
+        feature_dict['black_word_rate'] = num_black_word / example_len
 
         # generate "all_black_word" feature
-        # feature_dict['all_black_word'] = 1
-        # for word in example:
-        #     word = (remove_extras(word)).lower()
-        #     if word not in black_set and word not in prefix_suffix_set:
-        #         feature_dict['all_black_word'] = 0
-        #         break
+        feature_dict['all_black_word'] = 1
+        for word in example:
+            word = (remove_extras(word)).lower()
+            if word not in black_set and word not in prefix_suffix_set:
+                feature_dict['all_black_word'] = 0
+                break
         
         # generate "surrounding_black_word" feature
-        # feature_dict['surrounding_black_word'] = 0
-        # for word in [example_padded[1], example_padded[-2]]:
-        #     word = (remove_extras(word)).lower()
-        #     if word in black_set or word in prefix_suffix_set:
-        #         feature_dict['surrounding_black_word'] = 1
-        #         break
+        feature_dict['surrounding_black_word'] = 0
+        for word in [example_padded[1], example_padded[-2]]:
+            word = (remove_extras(word)).lower()
+            if word in black_set or word in prefix_suffix_set:
+                feature_dict['surrounding_black_word'] = 1
+                break
 
         # generate "end_with_prime_s" feature
         # feature_dict['end_with_prime_s'] = 1 if (re.fullmatch('.*\'s', example_padded[1+example_len])) else 0
@@ -331,7 +331,7 @@ def gen_feature_label(doc_list):
     return X, y
 
 
-parser = argparse.ArgumentParser(description='Generate feature matrix and labelvector, do Cross Validation/model evaluation.')
+parser = argparse.ArgumentParser(description='Generate feature matrix and label vector, do Cross Validation/model evaluation.')
 parser.add_argument('mode', choices=['cv', 'eval'], help='Execution mode, can be "cv" (Cross Validation) or "eval" (Model Evaluation).')
 
 if __name__ == '__main__':
@@ -344,7 +344,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.mode == 'cv': # Cross Validation mode
-        # print("Metrics\t\t\t\t\t\tPrecision\t\t\tRecall\t\t\tF1")
         print('==================================================================')
         print("{:<30s}{:<15s}{:<15s}{:<15s}".format("Metrics", "Precision(%)", "Recall(%)", "F1(%)"))
         score_dict = dict((Clf, []) for Clf in LIST_OF_CLF)
