@@ -19,7 +19,7 @@ import warnings
 import argparse
 
 from sklearn.model_selection import KFold
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import RidgeClassifier, LogisticRegression
 from sklearn.svm import LinearSVC
 from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
@@ -37,6 +37,7 @@ SET_J_DIR = '../documents/set_J/'
 MAX_EXAMPLE_LEN = 3
 PREFIX_SUFFIX_LIST_DIR = '../lists/prefix_suffix_lists/'
 BLACK_WHITE_LIST_DIR = '../lists/black_white_lists/'
+LIST_OF_CLF = [RidgeClassifier, LogisticRegression, LinearSVC, GaussianNB, DecisionTreeClassifier, RandomForestClassifier]
 
 prefix_black_set, prefix_white_set = set(), set()
 suffix_black_set, suffix_white_set = set(), set()
@@ -228,29 +229,29 @@ def gen_feature_label_example_len(doc_path, text, example_len, word_tag_dict):
         # generata "num_of_extras" feature
         feature_dict['num_of_extras'] = len(re.findall(r'[^a-zA-Z\s]', middle_chars))
 
-        # generate "in_blacklist" feature
-        num_black_word = 0
-        for word in example:
-            word = (remove_extras(word)).lower()
-            if word in black_set or word in prefix_suffix_set:
-                num_black_word += 1
-        feature_dict['black_word_rate'] = num_black_word / example_len
+        # generate "black_word_rate" feature
+        # num_black_word = 0
+        # for word in example:
+        #     word = (remove_extras(word)).lower()
+        #     if word in black_set or word in prefix_suffix_set:
+        #         num_black_word += 1
+        # feature_dict['black_word_rate'] = num_black_word / example_len
 
-        # generate "surrounding_black_word" feature
-        feature_dict['all_black_word'] = 1
-        for word in example:
-            word = (remove_extras(word)).lower()
-            if word not in black_set and word not in prefix_suffix_set:
-                feature_dict['all_black_word'] = 0
-                break
+        # generate "all_black_word" feature
+        # feature_dict['all_black_word'] = 1
+        # for word in example:
+        #     word = (remove_extras(word)).lower()
+        #     if word not in black_set and word not in prefix_suffix_set:
+        #         feature_dict['all_black_word'] = 0
+        #         break
         
         # generate "surrounding_black_word" feature
-        feature_dict['surrounding_black_word'] = 0
-        for word in [example_padded[1], example_padded[-2]]:
-            word = (remove_extras(word)).lower()
-            if word in black_set or word in prefix_suffix_set:
-                feature_dict['surrounding_black_word'] = 1
-                break
+        # feature_dict['surrounding_black_word'] = 0
+        # for word in [example_padded[1], example_padded[-2]]:
+        #     word = (remove_extras(word)).lower()
+        #     if word in black_set or word in prefix_suffix_set:
+        #         feature_dict['surrounding_black_word'] = 1
+        #         break
 
         # generate "end_with_prime_s" feature
         # feature_dict['end_with_prime_s'] = 1 if (re.fullmatch('.*\'s', example_padded[1+example_len])) else 0
@@ -337,20 +338,22 @@ if __name__ == '__main__':
     
     train_doc_list = [SET_I_DIR+doc_name for doc_name in os.listdir(SET_I_DIR) if doc_name.endswith('.txt')]
     test_doc_list = [SET_J_DIR+doc_name for doc_name in os.listdir(SET_J_DIR) if doc_name.endswith('.txt')]
+    
+    pool = multiprocessing.Pool(processes=80)
 
     args = parser.parse_args()
 
     if args.mode == 'cv': # Cross Validation mode
         # print("Metrics\t\t\t\t\t\tPrecision\t\t\tRecall\t\t\tF1")
+        print('==================================================================')
         print("{:<30s}{:<15s}{:<15s}{:<15s}".format("Metrics", "Precision(%)", "Recall(%)", "F1(%)"))
-        list_of_Clf = [LogisticRegression, LinearSVC, GaussianNB, DecisionTreeClassifier, RandomForestClassifier]
-        score_dict = dict((Clf, []) for Clf in list_of_Clf)
+        score_dict = dict((Clf, []) for Clf in LIST_OF_CLF)
         train_doc_list = np.array(train_doc_list)
         kf = KFold(n_splits=10)
         fold = 0
         for train_index, valid_index in kf.split(train_doc_list):
             fold += 1
-            print('=============================Fold {}==============================='.format(fold))
+            print('-----------------------------Fold {}-------------------------------'.format(fold))
             train_list = train_doc_list[train_index]
             valid_list = train_doc_list[valid_index]
             X_train, y_train = gen_feature_label(train_list)
@@ -362,7 +365,7 @@ if __name__ == '__main__':
             y_train_no_example = y_train['is_person_name'].astype('float')
             y_valid_no_example = y_valid['is_person_name'].astype('float')
 
-            for Clf in list_of_Clf:
+            for Clf in LIST_OF_CLF:
                 clf = Clf()
                 clf.fit(X_train_no_example, y_train_no_example)
                 y_predict = clf.predict(X_valid_no_example)
@@ -374,21 +377,21 @@ if __name__ == '__main__':
                 score_dict[Clf].append([precision, recall, f1])
                 
                 print('{:<30s}{:<15.2f}{:<15.2f}{:<15.2f}'.format(Clf.__name__, precision*100, recall*100, f1*100))
-        print('===========================Mean Score=============================='.format(fold))
-        for Clf in list_of_Clf:
+        print('---------------------------Mean Score------------------------------'.format(fold))
+        for Clf in LIST_OF_CLF:
             scores_each_fold = np.array(score_dict[Clf])
             scores_mean = np.mean(scores_each_fold, axis=0)
             print('{:<30s}{:<15.2f}{:<15.2f}{:<15.2f}'.format(Clf.__name__, scores_mean[0]*100, scores_mean[1]*100, scores_mean[2]*100))
+        print('===================================================================')
 
     elif args.mode == 'eval': # model evaluation mode
-        pool = multiprocessing.Pool(processes=80)
         
         # Feature and Label Generation
         feature_label_gen_start = timeit.default_timer()
 
         X_train, y_train = gen_feature_label(train_doc_list)
         X_test, y_test = gen_feature_label(test_doc_list)
-            
+
         feature_label_gen_end = timeit.default_timer()
 
         print("Feature/label generation time: {:.2f}s\n".format(feature_label_gen_end - feature_label_gen_start), file=sys.stderr)
@@ -401,13 +404,12 @@ if __name__ == '__main__':
         y_train_no_example = y_train['is_person_name'].astype('float')
         y_test_no_example = y_test['is_person_name'].astype('float')
 
-        list_of_Clf = [LogisticRegression, LinearSVC, GaussianNB, DecisionTreeClassifier, RandomForestClassifier]
 
         print('===================================================================')
         print("{:<30s}{:<15s}{:<15s}{:<15s}".format("Metrics", "Precision(%)", "Recall(%)", "F1(%)"))
         print('-------------------------------------------------------------------')
 
-        for Clf in list_of_Clf:
+        for Clf in LIST_OF_CLF:
             clf = Clf()
             clf.fit(X_train_no_example, y_train_no_example)
 
