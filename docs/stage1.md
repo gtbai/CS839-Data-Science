@@ -1,6 +1,6 @@
 # Stage 1
 
-## Member Infomation
+## Member Information
 
 + Guangtong Bai (<tt>[guangtong.bai@wisc.edu](mailto:guangtong.bai@wisc.edu)</tt>)
 + Dan Jiang (<tt>[dan.jiang@wisc.edu](mailto:dan.jiang@wisc.edu)</tt>)
@@ -14,5 +14,8 @@
 + [Set I (dev set)](https://github.com/gtbai/CS839-Data-Science/tree/master/stage1/documents/set_I)
 + [Set J (test set)](https://github.com/gtbai/CS839-Data-Science/tree/master/stage1/documents/set_J)
 + [Source Codes](https://github.com/gtbai/CS839-Data-Science/tree/master/stage1/src)
-+ [Compressed Files](https://github.com/gtbai/CS839-Data-Science/blob/master/stage1/compressed_files.zip)
 + [PDF Report](https://github.com/gtbai/CS839-Data-Science/blob/master/stage1/Report.pdf)
+
+## Downloads
+[Download Zip File](https://github.com/gtbai/CS839-Data-Science/blob/master/stage1/compressed_files.zip){: .btn }
+
