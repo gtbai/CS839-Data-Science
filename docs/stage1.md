@@ -1,10 +1,10 @@
-# CS839 Project Stage 1 Page
+# Stage 1
 
 ## Member Infomation
 
-+ Guangtong Bai (<tt>guangtong.bai@wisc.edu</tt>)
-+ Dan Jiang (<tt>dan.jiang@wisc.edu</tt>)
-+ Changtian Sun (<tt>changtiansun@cs.wisc.edu</tt>)
++ Guangtong Bai (<tt>[guangtong.bai@wisc.edu](mailto:guangtong.bai@wisc.edu)</tt>)
++ Dan Jiang (<tt>[dan.jiang@wisc.edu](mailto:dan.jiang@wisc.edu)</tt>)
++ Changtian Sun (<tt>[changtiansun@cs.wisc.edu](mailto:changtiansun@cs.wisc.edu)</tt>)
 
 ## Links
 
