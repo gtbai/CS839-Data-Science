@@ -1,0 +1,1655 @@
+===================================================================
+Metrics                       Precision(%)   Recall(%)      F1(%)          
+-------------------------------------------------------------------
+RidgeClassifier               82.81          48.18          60.92          
+=============================================
+Test False Positive: 
+    index doc_name        example  is_person_name
+0   0      196.txt  Detective      0             
+1   0      196.txt  Detective      0             
+2   0      217.txt  Sue            0             
+3   0      192.txt  Sergeant       0             
+4   0      192.txt  Sergeant       0             
+5   0      81.txt   God's          0             
+6   0      81.txt   God            0             
+7   0      81.txt   God            0             
+8   0      81.txt   God            0             
+9   0      137.txt  Nazi           0             
+10  0      137.txt  Nazi           0             
+11  0      228.txt  South          0             
+12  0      228.txt  South          0             
+13  0      228.txt  Africa.        0             
+14  0      228.txt  South          0             
+15  0      228.txt  Africa.        0             
+16  0      228.txt  India,         0             
+17  0      228.txt  India's        0             
+18  0      99.txt   Kid            0             
+19  0      99.txt   Kid            0             
+20  0      99.txt   Kid            0             
+21  0      16.txt   Nurse          0             
+22  0      16.txt   Nurse.         0             
+23  0      397.txt  Minister,      0             
+24  0      397.txt  Minister       0             
+25  0      397.txt  Sir            0             
+26  0      397.txt  Sir            0             
+27  0      397.txt  Yes Minister,  0             
+28  0      4.txt    Gotham         0             
+29  0      4.txt    Gotham,        0             
+30  0      133.txt  Totoros        0             
+31  0      133.txt  Totoros,       0             
+32  0      48.txt   Emperor,       0             
+33  0      48.txt   Emperor        0             
+34  0      30.txt   New            0             
+35  0      30.txt   York           0             
+36  0      30.txt   New            0             
+37  0      30.txt   York,          0             
+38  0      109.txt  Metropolis     0             
+39  0      109.txt  Metropolis.    0             
+40  0      128.txt  America's      0             
+41  0      128.txt  America's      0             
+42  0      377.txt  Father         0             
+43  0      377.txt  Craggy         0             
+44  0      377.txt  Island,        0             
+45  0      377.txt  Father         0             
+46  0      377.txt  Father         0             
+47  0      377.txt  Craggy         0             
+48  0      377.txt  Island.        0             
+49  0      256.txt  Det.           0             
+50  0      256.txt  Det.           0             
+51  0      74.txt   Scotland       0             
+52  0      74.txt   Scotland.      0             
+53  0      74.txt   Scotland       0             
+54  0      93.txt   Monumental's   0             
+55  0      93.txt   Monumental,    0             
+56  0      93.txt   Monumental's   0             
+57  0      262.txt  World          0             
+58  0      262.txt  War"           0             
+59  0      262.txt  World          0             
+60  0      262.txt  War            0             
+61  0      262.txt  War            0             
+62  0      131.txt  Los            0             
+63  0      131.txt  Angeles,       0             
+64  0      131.txt  Los            0             
+65  0      131.txt  Angeles        0             
+66  0      131.txt  Los            0             
+67  0      131.txt  Angeles,       0             
+68  0      263.txt  Fire           0             
+69  0      263.txt  Nation,        0             
+70  0      263.txt  Avatar         0             
+71  0      263.txt  Fire           0             
+72  0      263.txt  Nation         0             
+73  0      263.txt  Avatar,        0             
+74  0      263.txt  Avatar,        0             
+75  0      387.txt  Iraq           0             
+76  0      387.txt  Iraq           0             
+=============================================
+Test False Negative: 
+     index doc_name                      example  is_person_name
+0    0      364.txt  {Jeremy                      1             
+1    0      364.txt  Brown}                       1             
+2    0      364.txt  {Jeremy Brown}               1             
+3    0      196.txt  {Park                        1             
+4    0      196.txt  Doo-Man}                     1             
+5    0      196.txt  {Cho                         1             
+6    0      196.txt  Yong-koo},                   1             
+7    0      196.txt  {Seo                         1             
+8    0      196.txt  Tae-Yoon}                    1             
+9    0      196.txt  {Park Doo-Man}               1             
+10   0      196.txt  {Cho Yong-koo},              1             
+11   0      196.txt  {Seo Tae-Yoon}               1             
+12   0      389.txt  {Agatha                      1             
+13   0      389.txt  Christie}'s                  1             
+14   0      389.txt  {Hercule                     1             
+15   0      389.txt  {Hastings}                   1             
+16   0      389.txt  {Japp}.                      1             
+17   0      389.txt  {Agatha Christie}'s          1             
+18   0      80.txt   {Hans                        1             
+19   0      80.txt   Beckert}                     1             
+20   0      80.txt   {Edvard                      1             
+21   0      80.txt   Grieg}'s                     1             
+22   0      80.txt   '{Peer                       1             
+23   0      80.txt   Gynt}'                       1             
+24   0      80.txt   {Hans}                       1             
+25   0      80.txt   {Hans Beckert}               1             
+26   0      80.txt   {Edvard Grieg}'s             1             
+27   0      80.txt   '{Peer Gynt}'                1             
+28   0      34.txt   {Derek Vineyard}             1             
+29   0      272.txt  {Alphonse                    1             
+30   0      156.txt  Mary                         1             
+31   0      156.txt  Halliday}                    1             
+32   0      156.txt  {Lesgate}                    1             
+33   0      156.txt  {Charles                     1             
+34   0      156.txt  Alexander                    1             
+35   0      156.txt  Swann}                       1             
+36   0      156.txt  {Charles Alexander           1             
+37   0      156.txt  Alexander Swann}             1             
+38   0      156.txt  {Margot Mary Wendice}        1             
+39   0      156.txt  {Charles Alexander Swann}    1             
+40   0      40.txt   {Magalie}.                   1             
+41   0      85.txt   {Farhan                      1             
+42   0      85.txt   Qureshi}                     1             
+43   0      85.txt   {Raju                        1             
+44   0      85.txt   Rastogi}                     1             
+45   0      85.txt   {Chatur                      1             
+46   0      85.txt   Ramalingam},                 1             
+47   0      85.txt   {Viru                        1             
+48   0      85.txt   Sahastrabudhe},              1             
+49   0      85.txt   {Farhan Qureshi}             1             
+50   0      85.txt   {Raju Rastogi}               1             
+51   0      85.txt   {Chatur Ramalingam},         1             
+52   0      85.txt   {Viru Sahastrabudhe},        1             
+53   0      83.txt   Goldfarb}                    1             
+54   0      83.txt   {Tyrone}                     1             
+55   0      83.txt   {Marion}                     1             
+56   0      83.txt   {Sara Goldfarb}              1             
+57   0      217.txt  {Karan},{Aslam},{Sukhi}      1             
+58   0      217.txt  Rathod}                      1             
+59   0      293.txt  {Lucille}                    1             
+60   0      293.txt  {Buster}                     1             
+61   0      293.txt  Oscar                        1             
+62   0      293.txt  {Tobias                      1             
+63   0      293.txt  Funke},                      1             
+64   0      293.txt  {Tobias Funke},              1             
+65   0      192.txt  Taylor}                      1             
+66   0      192.txt  {Robert                      1             
+67   0      192.txt  Barnes}                      1             
+68   0      192.txt  {Elias                       1             
+69   0      192.txt  Grodin}.                     1             
+70   0      192.txt  {Chris Taylor}               1             
+71   0      192.txt  {Robert Barnes}              1             
+72   0      192.txt  {Elias Grodin}.              1             
+73   0      81.txt   {Antonio                     1             
+74   0      81.txt   {Wolfgang                    1             
+75   0      81.txt   Amadeus                      1             
+76   0      81.txt   {Austrian                    1             
+77   0      81.txt   Emperor                      1             
+78   0      81.txt   Joseph}                      1             
+79   0      81.txt   {Antonio Salieri}            1             
+80   0      81.txt   {Wolfgang Amadeus            1             
+81   0      81.txt   Amadeus Mozart}'s            1             
+82   0      81.txt   {Austrian Emperor            1             
+83   0      81.txt   Emperor Joseph}              1             
+84   0      81.txt   {Wolfgang Amadeus Mozart}'s  1             
+85   0      81.txt   {Austrian Emperor Joseph}    1             
+86   0      150.txt  {Jordan                      1             
+87   0      150.txt  Belfort}                     1             
+88   0      150.txt  {Steve                       1             
+89   0      150.txt  Madden}.                     1             
+90   0      150.txt  {Jordan Belfort}             1             
+91   0      150.txt  {Steve Madden}.              1             
+92   0      146.txt  Malloy}                      1             
+93   0      146.txt  Friendly},                   1             
+94   0      146.txt  {Barry},                     1             
+95   0      146.txt  {Terry Malloy}               1             
+96   0      265.txt  {Conan                       1             
+97   0      265.txt  Doyle}                       1             
+98   0      265.txt  {Sherlock                    1             
+99   0      265.txt  Holmes}                      1             
+100  0      265.txt  {Lestrade}                   1             
+101  0      265.txt  {Watson}                     1             
+102  0      265.txt  {Conan Doyle}                1             
+103  0      265.txt  {Sherlock Holmes}            1             
+104  0      28.txt   {Söze}                       1             
+105  0      137.txt  {Dan                         1             
+106  0      137.txt  Haywood}                     1             
+107  0      137.txt  {Dan Haywood}                1             
+108  0      374.txt  {Mark}                       1             
+109  0      374.txt  {Jez}                        1             
+110  0      249.txt  {Aydin},                     1             
+111  0      249.txt  {Nihal}                      1             
+112  0      249.txt  {Necla}                      1             
+113  0      228.txt  {Mohandas                    1             
+114  0      124.txt  {Jeanne}                     1             
+115  0      124.txt  {Simon}                      1             
+116  0      124.txt  {Wajdi                       1             
+117  0      124.txt  Mouawad}'s                   1             
+118  0      124.txt  {Wajdi Mouawad}'s            1             
+119  0      115.txt  Channing}                    1             
+120  0      115.txt  {Bill                        1             
+121  0      115.txt  Simpson}                     1             
+122  0      115.txt  {Lloyd                       1             
+123  0      115.txt  Richards}                    1             
+124  0      115.txt  {Phoebe}                     1             
+125  0      115.txt  {Margo Channing}             1             
+126  0      115.txt  {Bill Simpson}               1             
+127  0      115.txt  {Lloyd Richards}             1             
+128  0      352.txt  Knope},                      1             
+129  0      352.txt  {Ann                         1             
+130  0      352.txt  Perkins}                     1             
+131  0      352.txt  {Tom                         1             
+132  0      352.txt  Haverford},                  1             
+133  0      352.txt  {Ron                         1             
+134  0      352.txt  Swanson},                    1             
+135  0      352.txt  {Leslie Knope},              1             
+136  0      352.txt  {Ann Perkins}                1             
+137  0      352.txt  {Tom Haverford},             1             
+138  0      352.txt  {Ron Swanson},               1             
+139  0      15.txt   {Sam}                        1             
+140  0      15.txt   {Gollum}.                    1             
+141  0      15.txt   {Aragorn},                   1             
+142  0      15.txt   {Legolas}                    1             
+143  0      15.txt   {Gimli}                      1             
+144  0      15.txt   {Theoden}                    1             
+145  0      15.txt   {Saruman}'s                  1             
+146  0      342.txt  {Kenzo                       1             
+147  0      342.txt  {mayor}'s                    1             
+148  0      342.txt  {Kenzo Tenma},               1             
+149  0      207.txt  {Max},                       1             
+150  0      207.txt  {Furiosa},                   1             
+151  0      202.txt  {Andreiv                     1             
+152  0      202.txt  Rublev}                      1             
+153  0      202.txt  {Andreiv Rublev}             1             
+154  0      181.txt  {Amy},                       1             
+155  0      315.txt  {Josiah                      1             
+156  0      178.txt  {Mary                        1             
+157  0      178.txt  Dinkle},                     1             
+158  0      178.txt  Horowitz},                   1             
+159  0      178.txt  {Mary}                       1             
+160  0      178.txt  {Mary Dinkle},               1             
+161  0      255.txt  {Walter                      1             
+162  0      255.txt  White}                       1             
+163  0      255.txt  {Walt}                       1             
+164  0      255.txt  {Walter White}               1             
+165  0      16.txt   {Ratched},                   1             
+166  0      358.txt  {Tim}                        1             
+167  0      358.txt  {Marsha                      1             
+168  0      358.txt  Klein}'s                     1             
+169  0      358.txt  {Brian}.                     1             
+170  0      358.txt  {Mike}                       1             
+171  0      358.txt  {Twist}                      1             
+172  0      358.txt  {Marsha Klein}'s             1             
+173  0      98.txt   Peck})                       1             
+174  0      98.txt   {Scout}.                     1             
+175  0      98.txt   {Tom                         1             
+176  0      98.txt   Robinson},                   1             
+177  0      98.txt   {Scout}                      1             
+178  0      98.txt   {Boo                         1             
+179  0      98.txt   Radley}                      1             
+180  0      98.txt   {Atticus Finch}              1             
+181  0      98.txt   {Gregory Peck})              1             
+182  0      98.txt   {Atticus Finch}              1             
+183  0      98.txt   {Tom Robinson},              1             
+184  0      98.txt   {Boo Radley}                 1             
+185  0      341.txt  {Sterling                    1             
+186  0      341.txt  {Lana                        1             
+187  0      341.txt  Kane}                        1             
+188  0      341.txt  {Cyril                       1             
+189  0      341.txt  Figgis},                     1             
+190  0      341.txt  {Cheryl}.                    1             
+191  0      341.txt  {Lana Kane}                  1             
+192  0      341.txt  {Cyril Figgis},              1             
+193  0      112.txt  {Henry                       1             
+194  0      112.txt  {Henry Jones}.               1             
+195  0      270.txt  {Lincoln}                    1             
+196  0      397.txt  {Jim                         1             
+197  0      397.txt  Appleby}                     1             
+198  0      397.txt  {Bernard}                    1             
+199  0      157.txt  {Agda}                       1             
+200  0      157.txt  {Isak                        1             
+201  0      157.txt  Borg},                       1             
+202  0      157.txt  {Marianne},                  1             
+203  0      157.txt  {Isak Borg},                 1             
+204  0      340.txt  {Lord                        1             
+205  0      340.txt  Grantham}                    1             
+206  0      340.txt  {Matthew                     1             
+207  0      340.txt  Crawley},                    1             
+208  0      340.txt  {Lord Grantham}              1             
+209  0      340.txt  {Matthew Crawley},           1             
+210  0      180.txt  {Stoik}                      1             
+211  0      180.txt  {Night                       1             
+212  0      180.txt  Fury}                        1             
+213  0      180.txt  {Toothless},                 1             
+214  0      180.txt  {Night Fury}                 1             
+215  0      77.txt   {Joe                         1             
+216  0      77.txt   Cabot},                      1             
+217  0      77.txt   {Joe Cabot},                 1             
+218  0      4.txt    {James                       1             
+219  0      4.txt    Gordon},                     1             
+220  0      4.txt    {Harvey                      1             
+221  0      4.txt    {Bruce                       1             
+222  0      4.txt    Wayne},                      1             
+223  0      4.txt    {Rachel                      1             
+224  0      4.txt    Dawes}.                      1             
+225  0      4.txt    {James Gordon},              1             
+226  0      4.txt    {Bruce Wayne},               1             
+227  0      4.txt    {Rachel Dawes}.              1             
+228  0      227.txt  Darko}                       1             
+229  0      227.txt  {Frank},                     1             
+230  0      227.txt  {Donnie Darko}               1             
+231  0      264.txt  {David                       1             
+232  0      264.txt  Attenborough}'s              1             
+233  0      264.txt  {David Attenborough}'s       1             
+234  0      287.txt  {Jane                        1             
+235  0      287.txt  Austen}'s                    1             
+236  0      287.txt  {Jane Austen}'s              1             
+237  0      367.txt  {Earn}                       1             
+238  0      367.txt  {Alfred}                     1             
+239  0      110.txt  {Ed                          1             
+240  0      110.txt  {Bud                         1             
+241  0      110.txt  {Jack                        1             
+242  0      110.txt  Vincennes},                  1             
+243  0      110.txt  {Jack Vincennes},            1             
+244  0      250.txt  {Jack                        1             
+245  0      250.txt  Russell}                     1             
+246  0      250.txt  {Elizabeth},                 1             
+247  0      250.txt  {Rusell}.                    1             
+248  0      250.txt  {Jack Russell}               1             
+249  0      312.txt  {Mikasa}                     1             
+250  0      375.txt  {Jimmy                       1             
+251  0      375.txt  Iovine}                      1             
+252  0      375.txt  {Dre}                        1             
+253  0      375.txt  {Jimmy Iovine}               1             
+254  0      48.txt   {Marcus                      1             
+255  0      48.txt   Aurelius}.                   1             
+256  0      48.txt   {Commodus},                  1             
+257  0      48.txt   {Marcus Aurelius}.           1             
+258  0      229.txt  {Saïd},                      1             
+259  0      229.txt  {Hubert},                    1             
+260  0      229.txt  {Abdel}                      1             
+261  0      142.txt  {John                        1             
+262  0      142.txt  Forbes                       1             
+263  0      142.txt  {John Forbes                 1             
+264  0      142.txt  {John Forbes Nash},          1             
+265  0      123.txt  prey--{Neil}                 1             
+266  0      123.txt  {Vincent Hanna}              1             
+267  0      346.txt  {Matt                        1             
+268  0      346.txt  Murdock}                     1             
+269  0      346.txt  {Daredevil},                 1             
+270  0      346.txt  {Matt Murdock}               1             
+271  0      149.txt  {John                        1             
+272  0      149.txt  Merrick}                     1             
+273  0      149.txt  {Joseph},                    1             
+274  0      149.txt  {John Merrick}               1             
+275  0      208.txt  {Keller                      1             
+276  0      208.txt  {Anna},                      1             
+277  0      208.txt  {Joy},                       1             
+278  0      208.txt  {Loki}                       1             
+279  0      208.txt  {Alex                        1             
+280  0      208.txt  Jones},                      1             
+281  0      208.txt  {Alex Jones},                1             
+282  0      84.txt   Awasthi}                     1             
+283  0      84.txt   {Ram                         1             
+284  0      84.txt   Shankar                      1             
+285  0      84.txt   {Ishaan Awasthi}             1             
+286  0      84.txt   {Ram Shankar                 1             
+287  0      30.txt   Morales}                     1             
+288  0      30.txt   {Spider-Man}.                1             
+289  0      30.txt   {Peter                       1             
+290  0      30.txt   Parker},                     1             
+291  0      30.txt   {Miles Morales}              1             
+292  0      30.txt   {Peter Parker},              1             
+293  0      304.txt  Fawlty},                     1             
+294  0      304.txt  {Sybil},                     1             
+295  0      304.txt  {Manuel};                    1             
+296  0      282.txt  {Saitama}                    1             
+297  0      23.txt   Starling}                    1             
+298  0      23.txt   {Jack                        1             
+299  0      23.txt   {Hannibal                    1             
+300  0      23.txt   {Buffalo                     1             
+301  0      23.txt   Bill},                       1             
+302  0      23.txt   {Hannibal Lecter},           1             
+303  0      23.txt   {Buffalo Bill},              1             
+304  0      399.txt  {Louie}                      1             
+305  0      259.txt  {Rick},                      1             
+306  0      259.txt  {Morty},                     1             
+307  0      386.txt  Raylan                       1             
+308  0      386.txt  {Marshal Raylan              1             
+309  0      386.txt  {Marshal Raylan Givens}      1             
+310  0      109.txt  {Freder Fredersen}.          1             
+311  0      245.txt  {Peter                       1             
+312  0      51.txt   {Leonard},                   1             
+313  0      128.txt  Vallelonga},                 1             
+314  0      128.txt  {Don                         1             
+315  0      128.txt  Shirley}                     1             
+316  0      128.txt  {Green                       1             
+317  0      128.txt  Book},                       1             
+318  0      128.txt  {Don Shirley}                1             
+319  0      128.txt  {Green Book},                1             
+320  0      323.txt  {Dave                        1             
+321  0      323.txt  Chappelle}                   1             
+322  0      323.txt  {Dave Chappelle}             1             
+323  0      320.txt  {Andrew                      1             
+324  0      320.txt  {Marc                        1             
+325  0      320.txt  Smerling}                    1             
+326  0      320.txt  {Robert                      1             
+327  0      320.txt  {Susan                       1             
+328  0      320.txt  Berman}                      1             
+329  0      320.txt  {Morris                      1             
+330  0      320.txt  Black}.                      1             
+331  0      320.txt  {Ryan                        1             
+332  0      320.txt  Gosling}                     1             
+333  0      320.txt  {Kirsten                     1             
+334  0      320.txt  Dunst}.                      1             
+335  0      320.txt  {Marc Smerling}              1             
+336  0      320.txt  {Susan Berman}               1             
+337  0      320.txt  {Morris Black}.              1             
+338  0      320.txt  {Ryan Gosling}               1             
+339  0      320.txt  {Kirsten Dunst}.             1             
+340  0      377.txt  Crilly}.                     1             
+341  0      377.txt  {Dougal                      1             
+342  0      377.txt  McGuire},                    1             
+343  0      377.txt  {Jack                        1             
+344  0      377.txt  Hackett}                     1             
+345  0      377.txt  {Dougal McGuire},            1             
+346  0      377.txt  {Jack Hackett}               1             
+347  0      256.txt  {D'Angelo                    1             
+348  0      256.txt  {James                       1             
+349  0      256.txt  McNulty}                     1             
+350  0      256.txt  {Stringer                    1             
+351  0      256.txt  Bell},                       1             
+352  0      256.txt  {Wee-Bey}                    1             
+353  0      256.txt  {D'Angelo                    1             
+354  0      256.txt  {Omar},                      1             
+355  0      256.txt  {Cedric                      1             
+356  0      256.txt  Daniels},                    1             
+357  0      256.txt  {McNulty},                   1             
+358  0      256.txt  {James McNulty}              1             
+359  0      256.txt  {Avon Barksdale},            1             
+360  0      256.txt  {Stringer Bell},             1             
+361  0      256.txt  {Cedric Daniels},            1             
+362  0      62.txt   {Broomhilda},                1             
+363  0      74.txt   {Edward}                     1             
+364  0      74.txt   {Robert}                     1             
+365  0      74.txt   {William Wallace}            1             
+366  0      302.txt  {Michael                     1             
+367  0      302.txt  Scott}.                      1             
+368  0      302.txt  {Michael Scott}.             1             
+369  0      103.txt  {Klara}                      1             
+370  0      93.txt   Lamont}                      1             
+371  0      93.txt   Lockwood},                   1             
+372  0      93.txt   {Cosmo                       1             
+373  0      93.txt   Brown},                      1             
+374  0      93.txt   {Cosmo Brown},               1             
+375  0      262.txt  {Hitler},                    1             
+376  0      205.txt  {James                       1             
+377  0      205.txt  Hunt}                        1             
+378  0      205.txt  {Niki                        1             
+379  0      205.txt  Lauda}                       1             
+380  0      205.txt  {James Hunt}                 1             
+381  0      205.txt  {Niki Lauda}                 1             
+382  0      73.txt   {Charles                     1             
+383  0      73.txt   Foster                       1             
+384  0      73.txt   {Charles Foster              1             
+385  0      73.txt   {Charles Foster Kane},       1             
+386  0      131.txt  {Jake                        1             
+387  0      131.txt  Gittes}                      1             
+388  0      131.txt  {Hollis                      1             
+389  0      131.txt  {Gittes}                     1             
+390  0      131.txt  {Gittes}                     1             
+391  0      131.txt  {Gittes}                     1             
+392  0      131.txt  {Gittes}                     1             
+393  0      131.txt  {Evelyn},                    1             
+394  0      131.txt  {Jake Gittes}                1             
+395  0      263.txt  {Katara}                     1             
+396  0      263.txt  {Sokka}                      1             
+397  0      33.txt   Crane}                       1             
+398  0      33.txt   {Norman}                     1             
+                  features      coef
+0   all_black_word         -0.177223
+1   all_lowercase          -4.149914
+2   all_noun                1.457845
+3   all_uppercase          -3.415679
+4   all_word_capital        4.375324
+5   avg_word_len            0.085052
+6   black_word_rate        -6.154894
+7   contains_amazing_char   3.248958
+8   has_left_comma          0.766380
+9   has_left_period        -2.180950
+10  has_right_comma         0.595590
+11  has_right_period       -0.226449
+12  next_word_verb          0.318454
+13  num_of_extras          -1.871258
+14  prefix_in_blacklist    -2.497502
+15  prefix_in_whitelist     1.495811
+16  proper_noun_rate        2.465692
+17  suffix_in_blacklist    -1.141919
+18  suffix_in_whitelist     1.079796
+19  surrounded_by_paren     3.687728
+20  surrounding_black_word -0.855705
+LogisticRegression            91.18          90.00          90.59          
+=============================================
+Test False Positive: 
+    index doc_name           example  is_person_name
+0   0      80.txt   Suite             0             
+1   0      80.txt   Op.               0             
+2   0      272.txt  Stone             0             
+3   0      40.txt   Security          0             
+4   0      85.txt   Imperial          0             
+5   0      85.txt   Engineering,      0             
+6   0      217.txt  Sue               0             
+7   0      150.txt  Wall              0             
+8   0      137.txt  Allied            0             
+9   0      124.txt  Incendies         0             
+10  0      115.txt  Life"             0             
+11  0      352.txt  Parks             0             
+12  0      352.txt  Recreation        0             
+13  0      15.txt   Ring.             0             
+14  0      99.txt   Kid               0             
+15  0      99.txt   Kid               0             
+16  0      99.txt   Kid               0             
+17  0      183.txt  While             0             
+18  0      183.txt  Two               0             
+19  0      183.txt  Bomb":            0             
+20  0      181.txt  Did               0             
+21  0      181.txt  Did {Nick         0             
+22  0      181.txt  Did {Nick Dunne}  0             
+23  0      315.txt  Democratic        0             
+24  0      255.txt  Stage             0             
+25  0      255.txt  Stage III         0             
+26  0      341.txt  "Duchess."        0             
+27  0      112.txt  Grail.            0             
+28  0      112.txt  Dr.               0             
+29  0      270.txt  Reconstruction.   0             
+30  0      270.txt  Visuals           0             
+31  0      397.txt  Yes               0             
+32  0      397.txt  Cabinet           0             
+33  0      397.txt  Yes Minister,     0             
+34  0      340.txt  Downton           0             
+35  0      180.txt  Berk,             0             
+36  0      180.txt  Regardless,       0             
+37  0      4.txt    Begins,           0             
+38  0      4.txt    {Batman} Begins,  0             
+39  0      227.txt  Gretchen,         0             
+40  0      250.txt  Rule.             0             
+41  0      375.txt  Ones"             0             
+42  0      48.txt   Emperor,          0             
+43  0      48.txt   Emperor           0             
+44  0      142.txt  Jr.               0             
+45  0      23.txt   Behavioral        0             
+46  0      285.txt  U-boats           0             
+47  0      320.txt  "All              0             
+48  0      320.txt  Good              0             
+49  0      320.txt  Things            0             
+50  0      320.txt  "All Good         0             
+51  0      320.txt  Good Things       0             
+52  0      320.txt  "All Good Things  0             
+53  0      377.txt  Craggy            0             
+54  0      377.txt  Craggy            0             
+55  0      256.txt  Det.              0             
+56  0      256.txt  Det.              0             
+57  0      93.txt   Pictures'         0             
+58  0      262.txt  Emphasis          0             
+59  0      205.txt  Formula           0             
+60  0      73.txt   "Rosebud".        0             
+61  0      131.txt  Water             0             
+62  0      131.txt  Power,            0             
+63  0      263.txt  Water             0             
+64  0      263.txt  Fire              0             
+65  0      263.txt  Fire              0             
+66  0      387.txt  Stones            0             
+=============================================
+Test False Negative: 
+    index doc_name                      example  is_person_name
+0   0      364.txt  {Jeremy                      1             
+1   0      196.txt  {Park                        1             
+2   0      196.txt  Doo-Man}                     1             
+3   0      196.txt  Yong-koo},                   1             
+4   0      196.txt  Tae-Yoon}                    1             
+5   0      196.txt  {Park Doo-Man}               1             
+6   0      196.txt  {Cho Yong-koo},              1             
+7   0      196.txt  {Seo Tae-Yoon}               1             
+8   0      389.txt  {Agatha Christie}'s          1             
+9   0      80.txt   Grieg}'s                     1             
+10  0      80.txt   '{Peer                       1             
+11  0      80.txt   {Edvard Grieg}'s             1             
+12  0      80.txt   '{Peer Gynt}'                1             
+13  0      85.txt   {Farhan                      1             
+14  0      85.txt   {Farhan Qureshi}             1             
+15  0      83.txt   {Harry}'s                    1             
+16  0      217.txt  {Karan},{Aslam},{Sukhi}      1             
+17  0      81.txt   {Antonio                     1             
+18  0      81.txt   {Austrian                    1             
+19  0      81.txt   {Austrian Emperor            1             
+20  0      81.txt   {Wolfgang Amadeus Mozart}'s  1             
+21  0      81.txt   {Austrian Emperor Joseph}    1             
+22  0      150.txt  {Jordan                      1             
+23  0      265.txt  {Conan                       1             
+24  0      265.txt  {Conan Doyle}                1             
+25  0      374.txt  {Mark}                       1             
+26  0      249.txt  {Aydin},                     1             
+27  0      124.txt  Mouawad}'s                   1             
+28  0      124.txt  {Wajdi Mouawad}'s            1             
+29  0      15.txt   {Aragorn},                   1             
+30  0      15.txt   {Saruman}'s                  1             
+31  0      342.txt  {Kenzo                       1             
+32  0      342.txt  {mayor}'s                    1             
+33  0      202.txt  {Andreiv                     1             
+34  0      202.txt  {Andreiv Rublev}             1             
+35  0      178.txt  {Mary}                       1             
+36  0      358.txt  {Marsha                      1             
+37  0      358.txt  Klein}'s                     1             
+38  0      358.txt  {Brian}.                     1             
+39  0      358.txt  {Marsha Klein}'s             1             
+40  0      98.txt   {Gregory                     1             
+41  0      98.txt   {Gregory Peck})              1             
+42  0      112.txt  {Henry                       1             
+43  0      112.txt  {Henry Jones}.               1             
+44  0      157.txt  {Isak                        1             
+45  0      157.txt  {Isak Borg},                 1             
+46  0      340.txt  {Lord                        1             
+47  0      340.txt  {Lord Grantham}              1             
+48  0      264.txt  {David                       1             
+49  0      264.txt  {David Attenborough}'s       1             
+50  0      287.txt  {Jane                        1             
+51  0      287.txt  Austen}'s                    1             
+52  0      287.txt  {Jane Austen}'s              1             
+53  0      375.txt  {Dre}                        1             
+54  0      229.txt  {Saïd},                      1             
+55  0      123.txt  prey--{Neil}                 1             
+56  0      123.txt  {Vincent Hanna}              1             
+57  0      149.txt  {John                        1             
+58  0      149.txt  {John Merrick}               1             
+59  0      30.txt   {Spider-Man}.                1             
+60  0      23.txt   {Hannibal                    1             
+61  0      386.txt  {Marshal Raylan              1             
+62  0      128.txt  {Green                       1             
+63  0      128.txt  {Green Book},                1             
+64  0      256.txt  {D'Angelo                    1             
+65  0      256.txt  {James                       1             
+66  0      256.txt  {Wee-Bey}                    1             
+67  0      256.txt  {D'Angelo                    1             
+68  0      256.txt  {Cedric                      1             
+69  0      256.txt  {James McNulty}              1             
+70  0      256.txt  {Cedric Daniels},            1             
+71  0      131.txt  Gittes}                      1             
+72  0      131.txt  {Gittes}                     1             
+73  0      131.txt  {Gittes}                     1             
+74  0      131.txt  {Gittes}                     1             
+75  0      131.txt  {Gittes}                     1             
+76  0      131.txt  {Jake Gittes}                1             
+LinearSVC                     90.48          90.13          90.31          
+=============================================
+Test False Positive: 
+    index doc_name               example  is_person_name
+0   0      80.txt   Suite                 0             
+1   0      80.txt   Op.                   0             
+2   0      272.txt  Stone                 0             
+3   0      40.txt   Security              0             
+4   0      85.txt   Imperial              0             
+5   0      85.txt   Engineering,          0             
+6   0      217.txt  Sue                   0             
+7   0      150.txt  Wall                  0             
+8   0      137.txt  Allied                0             
+9   0      124.txt  Incendies             0             
+10  0      115.txt  Life"                 0             
+11  0      352.txt  Parks                 0             
+12  0      352.txt  Recreation            0             
+13  0      15.txt   Ring.                 0             
+14  0      99.txt   Kid                   0             
+15  0      99.txt   Kid                   0             
+16  0      99.txt   Kid                   0             
+17  0      183.txt  While                 0             
+18  0      183.txt  Two                   0             
+19  0      183.txt  Bomb":                0             
+20  0      183.txt  {Pasternak}. Soon     0             
+21  0      181.txt  Did                   0             
+22  0      181.txt  Did {Nick             0             
+23  0      181.txt  Did {Nick Dunne}      0             
+24  0      315.txt  Democratic            0             
+25  0      255.txt  Stage                 0             
+26  0      255.txt  Stage III             0             
+27  0      341.txt  "Duchess."            0             
+28  0      112.txt  Grail.                0             
+29  0      112.txt  Dr.                   0             
+30  0      270.txt  Reconstruction.       0             
+31  0      270.txt  Visuals               0             
+32  0      397.txt  Yes                   0             
+33  0      397.txt  Cabinet               0             
+34  0      157.txt  Dr.                   0             
+35  0      340.txt  Downton               0             
+36  0      180.txt  Berk,                 0             
+37  0      180.txt  Regardless,           0             
+38  0      4.txt    Begins,               0             
+39  0      4.txt    {Batman} Begins,      0             
+40  0      250.txt  Rule.                 0             
+41  0      375.txt  Ones"                 0             
+42  0      375.txt  Dr.                   0             
+43  0      48.txt   Emperor,              0             
+44  0      48.txt   Emperor               0             
+45  0      142.txt  Jr.                   0             
+46  0      123.txt  vaults,               0             
+47  0      23.txt   Behavioral            0             
+48  0      23.txt   Dr.                   0             
+49  0      285.txt  U-boats               0             
+50  0      320.txt  "Capturing            0             
+51  0      320.txt  "All                  0             
+52  0      320.txt  Good                  0             
+53  0      320.txt  Things                0             
+54  0      320.txt  "All Good             0             
+55  0      320.txt  Good Things           0             
+56  0      320.txt  "All Good Things      0             
+57  0      377.txt  Craggy                0             
+58  0      377.txt  drinking,             0             
+59  0      377.txt  Craggy                0             
+60  0      256.txt  Det.                  0             
+61  0      256.txt  Det.                  0             
+62  0      256.txt  Det. {James McNulty}  0             
+63  0      93.txt   Pictures'             0             
+64  0      262.txt  Emphasis              0             
+65  0      205.txt  Formula               0             
+66  0      73.txt   "Rosebud".            0             
+67  0      131.txt  Water                 0             
+68  0      131.txt  Power,                0             
+69  0      263.txt  Water                 0             
+70  0      263.txt  Fire                  0             
+71  0      263.txt  Fire                  0             
+72  0      387.txt  Stones                0             
+=============================================
+Test False Negative: 
+    index doc_name                    example  is_person_name
+0   0      364.txt  {Jeremy                    1             
+1   0      364.txt  {Jeremy Brown}             1             
+2   0      196.txt  {Park                      1             
+3   0      196.txt  Doo-Man}                   1             
+4   0      196.txt  Yong-koo},                 1             
+5   0      196.txt  Tae-Yoon}                  1             
+6   0      196.txt  {Park Doo-Man}             1             
+7   0      196.txt  {Cho Yong-koo},            1             
+8   0      196.txt  {Seo Tae-Yoon}             1             
+9   0      80.txt   Grieg}'s                   1             
+10  0      80.txt   '{Peer                     1             
+11  0      80.txt   {Edvard Grieg}'s           1             
+12  0      80.txt   '{Peer Gynt}'              1             
+13  0      85.txt   {Farhan                    1             
+14  0      85.txt   {Farhan Qureshi}           1             
+15  0      83.txt   {Harry}'s                  1             
+16  0      217.txt  {Karan},{Aslam},{Sukhi}    1             
+17  0      217.txt  {DJ}.                      1             
+18  0      217.txt  {Sonia}'s                  1             
+19  0      217.txt  {DJ}                       1             
+20  0      217.txt  .{DJ}                      1             
+21  0      81.txt   {Antonio                   1             
+22  0      81.txt   {Austrian                  1             
+23  0      81.txt   {Austrian Emperor          1             
+24  0      81.txt   {Austrian Emperor Joseph}  1             
+25  0      150.txt  {Jordan                    1             
+26  0      265.txt  {Conan                     1             
+27  0      265.txt  {Conan Doyle}              1             
+28  0      374.txt  {Mark}                     1             
+29  0      249.txt  {Aydin},                   1             
+30  0      352.txt  {Leslie}'s                 1             
+31  0      15.txt   {Aragorn},                 1             
+32  0      342.txt  {Kenzo                     1             
+33  0      342.txt  {mayor}'s                  1             
+34  0      202.txt  {Andreiv                   1             
+35  0      202.txt  {Andreiv Rublev}           1             
+36  0      178.txt  {Mary}                     1             
+37  0      358.txt  {Marsha                    1             
+38  0      358.txt  Klein}'s                   1             
+39  0      358.txt  {Marsha Klein}'s           1             
+40  0      98.txt   {Gregory Peck})            1             
+41  0      112.txt  {Henry                     1             
+42  0      112.txt  {Henry Jones}.             1             
+43  0      157.txt  {Isak                      1             
+44  0      157.txt  {Isak Borg},               1             
+45  0      340.txt  {Lord                      1             
+46  0      340.txt  {Lord Grantham}            1             
+47  0      4.txt    {Batman}'s                 1             
+48  0      227.txt  {Donnie}'s                 1             
+49  0      264.txt  {David                     1             
+50  0      264.txt  {David Attenborough}'s     1             
+51  0      287.txt  {Jane                      1             
+52  0      287.txt  {Jane Austen}'s            1             
+53  0      375.txt  {Dre}                      1             
+54  0      229.txt  {Saïd},                    1             
+55  0      123.txt  prey--{Neil}               1             
+56  0      123.txt  {Vincent Hanna}            1             
+57  0      149.txt  {John                      1             
+58  0      149.txt  {John Merrick}             1             
+59  0      30.txt   {Spider-Man}.              1             
+60  0      23.txt   {Hannibal                  1             
+61  0      399.txt  {Louie}                    1             
+62  0      386.txt  {Marshal Raylan            1             
+63  0      128.txt  {Green                     1             
+64  0      256.txt  {James                     1             
+65  0      256.txt  {Wee-Bey}                  1             
+66  0      256.txt  {Cedric                    1             
+67  0      256.txt  {McNulty},                 1             
+68  0      256.txt  {James McNulty}            1             
+69  0      256.txt  {Cedric Daniels},          1             
+70  0      131.txt  Gittes}                    1             
+71  0      131.txt  {Gittes}                   1             
+72  0      131.txt  {Gittes}                   1             
+73  0      131.txt  {Gittes}                   1             
+74  0      131.txt  {Gittes}                   1             
+75  0      131.txt  {Jake Gittes}              1             
+GaussianNB                    61.46          97.14          75.29          
+=============================================
+Test False Positive: 
+     index doc_name                             example  is_person_name
+0    0      364.txt  With                                0             
+1    0      196.txt  When                                0             
+2    0      196.txt  Detective {Cho                      0             
+3    0      196.txt  Detective {Cho Yong-koo},           0             
+4    0      389.txt  murder(s)-                          0             
+5    0      389.txt  Captain {Hastings}                  0             
+6    0      389.txt  Inspector {Japp}.                   0             
+7    0      80.txt   Suite                               0             
+8    0      80.txt   Op.                                 0             
+9    0      80.txt   Gynt}' Suite                        0             
+10   0      80.txt   Suite I Op.                         0             
+11   0      34.txt   Through                             0             
+12   0      34.txt   Reformed                            0             
+13   0      34.txt   {Danny}. Reformed                   0             
+14   0      34.txt   {Danny Vineyard}'s narration,       0             
+15   0      272.txt  Two                                 0             
+16   0      272.txt  With                                0             
+17   0      272.txt  To                                  0             
+18   0      272.txt  With                                0             
+19   0      272.txt  With                                0             
+20   0      272.txt  Stone                               0             
+21   0      272.txt  {Edward} sacrifices                 0             
+22   0      272.txt  {Edward} receives                   0             
+23   0      156.txt  When                                0             
+24   0      156.txt  Subsequently                        0             
+25   0      156.txt  Meanwhile                           0             
+26   0      156.txt  But                                 0             
+27   0      156.txt  When {Mark}                         0             
+28   0      156.txt  Meanwhile {Tony}                    0             
+29   0      156.txt  Captain {Lesgate}                   0             
+30   0      40.txt   Out                                 0             
+31   0      40.txt   Security                            0             
+32   0      40.txt   Then                                0             
+33   0      40.txt   {Magalie}. Out                      0             
+34   0      40.txt   Then {Driss}                        0             
+35   0      85.txt   Enroute,                            0             
+36   0      85.txt   Imperial                            0             
+37   0      85.txt   Engineering,                        0             
+38   0      85.txt   Delhi's Imperial                    0             
+39   0      85.txt   Imperial College                    0             
+40   0      85.txt   Engineering, {Viru                  0             
+41   0      85.txt   Engineering, {Viru Sahastrabudhe},  0             
+42   0      83.txt   Meanwhile                           0             
+43   0      83.txt   {Harry} ({Jared                     0             
+44   0      83.txt   {Tyrone} ({Marlon                   0             
+45   0      83.txt   {Marion} ({Jennifer                 0             
+46   0      83.txt   Meanwhile {Sara}                    0             
+47   0      83.txt   {Sara Goldfarb} ({Ellen             0             
+48   0      83.txt   Goldfarb} ({Ellen Burstyn})         0             
+49   0      83.txt   {Harry} ({Jared Leto})              0             
+50   0      83.txt   {Tyrone} ({Marlon Wayans})          0             
+51   0      83.txt   {Marion} ({Jennifer Connelly})      0             
+52   0      267.txt  Like                                0             
+53   0      267.txt  Each                                0             
+54   0      217.txt  Sue                                 0             
+55   0      217.txt  Lt {Ajay                            0             
+56   0      217.txt  Lt {Ajay Rathod}                    0             
+57   0      293.txt  Meet                                0             
+58   0      293.txt  But                                 0             
+59   0      192.txt  Upon                                0             
+60   0      192.txt  As                                  0             
+61   0      192.txt  And                                 0             
+62   0      192.txt  Sergeant {Robert                    0             
+63   0      192.txt  Sergeant {Elias                     0             
+64   0      192.txt  Sergeant {Robert Barnes}            0             
+65   0      192.txt  Sergeant {Elias Grodin}.            0             
+66   0      81.txt   But                                 0             
+67   0      81.txt   Joseph} II.                         0             
+68   0      81.txt   Emperor Joseph} II.                 0             
+69   0      150.txt  Wall                                0             
+70   0      150.txt  Wall Street                         0             
+71   0      146.txt  Father {Barry},                     0             
+72   0      265.txt  Doctor {Watson}                     0             
+73   0      28.txt   Following                           0             
+74   0      28.txt   As                                  0             
+75   0      28.txt   Söze} is                            0             
+76   0      28.txt   wronged {Söze}                      0             
+77   0      28.txt   {Söze} at                           0             
+78   0      28.txt   called {Keyser Söze}                0             
+79   0      28.txt   {Keyser Söze} is                    0             
+80   0      28.txt   Söze} is felt.                      0             
+81   0      28.txt   has wronged {Söze}                  0             
+82   0      28.txt   wronged {Söze} at                   0             
+83   0      28.txt   {Söze} at some                      0             
+84   0      28.txt   is {Keyser Söze}?                   0             
+85   0      137.txt  Retired                             0             
+86   0      137.txt  Allied                              0             
+87   0      137.txt  But                                 0             
+88   0      137.txt  Retired American                    0             
+89   0      137.txt  The Cold                            0             
+90   0      137.txt  The Cold War                        0             
+91   0      374.txt  Mayhem                              0             
+92   0      228.txt  After                               0             
+93   0      228.txt  After                               0             
+94   0      228.txt  Nevertheless,                       0             
+95   0      228.txt  Too                                 0             
+96   0      228.txt  Africa. After                       0             
+97   0      228.txt  Africa. After                       0             
+98   0      228.txt  Empire. {Gandhi}                    0             
+99   0      124.txt  Adapted                             0             
+100  0      124.txt  Incendies                           0             
+101  0      115.txt  Only                                0             
+102  0      115.txt  fiancé,                             0             
+103  0      115.txt  When                                0             
+104  0      115.txt  fiancé                              0             
+105  0      115.txt  Life"                               0             
+106  0      115.txt  {Eve} ({Anne                        0             
+107  0      115.txt  {DeWitt} ({George                   0             
+108  0      115.txt  her fiancé,                         0             
+109  0      115.txt  fiancé, {Bill                       0             
+110  0      115.txt  the fiancé                          0             
+111  0      115.txt  fiancé shows                        0             
+112  0      115.txt  {Eve} ({Anne Baxter})               0             
+113  0      115.txt  and her fiancé,                     0             
+114  0      115.txt  her fiancé, {Bill                   0             
+115  0      115.txt  fiancé, {Bill Simpson}              0             
+116  0      115.txt  When the fiancé                     0             
+117  0      115.txt  the fiancé shows                    0             
+118  0      115.txt  fiancé shows no                     0             
+119  0      352.txt  Parks                               0             
+120  0      352.txt  Recreation                          0             
+121  0      352.txt  her                                 0             
+122  0      352.txt  However,                            0             
+123  0      352.txt  Recreation Department,              0             
+124  0      15.txt   Ring.                               0             
+125  0      15.txt   Ring. {Frodo}                       0             
+126  0      15.txt   King {Theoden}                      0             
+127  0      342.txt  Dr.                                 0             
+128  0      342.txt  But                                 0             
+129  0      342.txt  (who                                0             
+130  0      342.txt  arrived                             0             
+131  0      342.txt  first),                             0             
+132  0      342.txt  fiancé                              0             
+133  0      342.txt  Dr. {Kenzo                          0             
+134  0      342.txt  (who arrived                        0             
+135  0      342.txt  arrived first),                     0             
+136  0      342.txt  his fiancé                          0             
+137  0      342.txt  fiancé broken.                      0             
+138  0      342.txt  Dr. {Kenzo Tenma},                  0             
+139  0      342.txt  (who arrived first),                0             
+140  0      342.txt  to his fiancé                       0             
+141  0      342.txt  his fiancé broken.                  0             
+142  0      342.txt  fiancé broken. His                  0             
+143  0      207.txt  Within                              0             
+144  0      207.txt  And                                 0             
+145  0      207.txt  And {Furiosa},                      0             
+146  0      99.txt   As                                  0             
+147  0      99.txt   Five                                0             
+148  0      99.txt   Kid                                 0             
+149  0      99.txt   Before                              0             
+150  0      99.txt   Kid                                 0             
+151  0      99.txt   Kid                                 0             
+152  0      99.txt   by {Edna}                           0             
+153  0      99.txt   {Charlie}. Before                   0             
+154  0      99.txt   Asylum {Charlie}                    0             
+155  0      99.txt   {Edna}. {Charlie}                   0             
+156  0      183.txt  (1)                                 0             
+157  0      183.txt  While                               0             
+158  0      183.txt  Soon                                0             
+159  0      183.txt  (2)                                 0             
+160  0      183.txt  (3)                                 0             
+161  0      183.txt  Two                                 0             
+162  0      183.txt  (4)                                 0             
+163  0      183.txt  Bomb":                              0             
+164  0      183.txt  (5)                                 0             
+165  0      183.txt  "{Pasternak}": While                0             
+166  0      183.txt  {Pasternak}. Soon                   0             
+167  0      181.txt  On                                  0             
+168  0      181.txt  Under                               0             
+169  0      181.txt  Soon                                0             
+170  0      181.txt  Did                                 0             
+171  0      181.txt  Did {Nick                           0             
+172  0      181.txt  Did {Nick Dunne}                    0             
+173  0      315.txt  Fictional                           0             
+174  0      315.txt  Democratic                          0             
+175  0      315.txt  Fictional Democratic                0             
+176  0      315.txt  Democratic President                0             
+177  0      315.txt  President {Josiah                   0             
+178  0      315.txt  Fictional Democratic President      0             
+179  0      315.txt  Democratic President {Josiah        0             
+180  0      315.txt  President {Josiah Bartlet}          0             
+181  0      178.txt  Asperger's,                         0             
+182  0      178.txt  Thus                                0             
+183  0      178.txt  Will                                0             
+184  0      178.txt  He's {Max                           0             
+185  0      178.txt  She's {Mary Dinkle},                0             
+186  0      178.txt  He's {Max Horowitz},                0             
+187  0      255.txt  When                                0             
+188  0      255.txt  Stage                               0             
+189  0      255.txt  Determined                          0             
+190  0      255.txt  Stage III                           0             
+191  0      255.txt  Mexico. Determined                  0             
+192  0      16.txt   To                                  0             
+193  0      16.txt   Once                                0             
+194  0      16.txt   Nurse {Ratched},                    0             
+195  0      358.txt  Also                                0             
+196  0      358.txt  Together                            0             
+197  0      98.txt   Small-town                          0             
+198  0      98.txt   by                                  0             
+199  0      98.txt   Meanwhile,                          0             
+200  0      98.txt   Small-town Alabama,                 0             
+201  0      98.txt   by {Gregory                         0             
+202  0      98.txt   {Scout}. {Atticus                   0             
+203  0      98.txt   Meanwhile, {Jem}                    0             
+204  0      98.txt   {Scout}. {Atticus Finch}            0             
+205  0      341.txt  At                                  0             
+206  0      341.txt  At                                  0             
+207  0      341.txt  "Duchess."                          0             
+208  0      341.txt  "Duchess." {Archer}                 0             
+209  0      341.txt  Agent {Lana                         0             
+210  0      341.txt  Agent {Lana Kane}                   0             
+211  0      112.txt  Grail.                              0             
+212  0      112.txt  Dr.                                 0             
+213  0      112.txt  Dr. {Henry                          0             
+214  0      112.txt  Dr. {Henry Jones}.                  0             
+215  0      112.txt  {Henry Jones}. The                  0             
+216  0      270.txt  Reconstruction.                     0             
+217  0      270.txt  Visuals                             0             
+218  0      270.txt  Several                             0             
+219  0      270.txt  President {Lincoln}                 0             
+220  0      397.txt  Following                           0             
+221  0      397.txt  Yes                                 0             
+222  0      397.txt  Cabinet                             0             
+223  0      397.txt  As                                  0             
+224  0      397.txt  Yes Minister,                       0             
+225  0      397.txt  Minister, {Jim                      0             
+226  0      397.txt  Sir {Humphrey                       0             
+227  0      397.txt  Cabinet Secretary.                  0             
+228  0      397.txt  Secretary. {Bernard}                0             
+229  0      397.txt  Sir {Humphrey}.                     0             
+230  0      397.txt  Yes Minister, {Jim                  0             
+231  0      397.txt  Minister, {Jim Hacker}              0             
+232  0      397.txt  Sir {Humphrey Appleby}              0             
+233  0      397.txt  Cabinet Secretary. {Bernard}        0             
+234  0      157.txt  With                                0             
+235  0      157.txt  Dr.                                 0             
+236  0      157.txt  Instead                             0             
+237  0      157.txt  Along                               0             
+238  0      157.txt  Those                               0             
+239  0      157.txt  But                                 0             
+240  0      157.txt  Miss {Agda}                         0             
+241  0      157.txt  Dr. {Isak Borg},                    0             
+242  0      340.txt  Downton                             0             
+243  0      340.txt  Marrying                            0             
+244  0      340.txt  Meanwhile,                          0             
+245  0      340.txt  Downton Abbey,                      0             
+246  0      180.txt  Long                                0             
+247  0      180.txt  Berk,                               0             
+248  0      180.txt  However,                            0             
+249  0      180.txt  Regardless,                         0             
+250  0      180.txt  Instead,                            0             
+251  0      180.txt  But                                 0             
+252  0      180.txt  Viking, {Hiccup},                   0             
+253  0      180.txt  Regardless, {Hiccup}                0             
+254  0      180.txt  Instead, {Hiccup}                   0             
+255  0      2.txt    When                                0             
+256  0      77.txt   Six                                 0             
+257  0      77.txt   Right                               0             
+258  0      77.txt   But,                                0             
+259  0      77.txt   When                                0             
+260  0      77.txt   (a                                  0             
+261  0      77.txt   warehouse),                         0             
+262  0      77.txt   (a warehouse),                      0             
+263  0      4.txt    Set                                 0             
+264  0      4.txt    Begins,                             0             
+265  0      4.txt    {Batman} Begins,                    0             
+266  0      4.txt    Begins, {Batman},                   0             
+267  0      4.txt    {Batman}, Lieutenant                0             
+268  0      4.txt    Lieutenant {James                   0             
+269  0      4.txt    Wayne}, {Dent}                      0             
+270  0      4.txt    {Batman} Begins, {Batman},          0             
+271  0      4.txt    Lieutenant {James Gordon},          0             
+272  0      227.txt  Gretchen,                           0             
+273  0      227.txt  When                                0             
+274  0      227.txt  Both                                0             
+275  0      227.txt  in Gretchen,                        0             
+276  0      367.txt  Based                               0             
+277  0      367.txt  Along                               0             
+278  0      110.txt  Three                               0             
+279  0      250.txt  Rule.                               0             
+280  0      250.txt  (tax)                               0             
+281  0      250.txt  Leading                             0             
+282  0      250.txt  As                                  0             
+283  0      250.txt  Captain {Rusell}.                   0             
+284  0      312.txt  Flash                               0             
+285  0      312.txt  Teenage                             0             
+286  0      312.txt  As                                  0             
+287  0      375.txt  Ones"                               0             
+288  0      375.txt  Dr.                                 0             
+289  0      375.txt  "The Defiant                        0             
+290  0      375.txt  "The Defiant Ones"                  0             
+291  0      133.txt  Two                                 0             
+292  0      133.txt  (pronounced                         0             
+293  0      133.txt  toe-toe-ro).                        0             
+294  0      133.txt  (pronounced toe-toe-ro).            0             
+295  0      48.txt   Emperor,                            0             
+296  0      48.txt   Before                              0             
+297  0      48.txt   Emperor                             0             
+298  0      48.txt   Emperor, {Marcus                    0             
+299  0      48.txt   Aurelius}. Before                   0             
+300  0      48.txt   Emperor, {Marcus Aurelius}.         0             
+301  0      48.txt   {Marcus Aurelius}. Before           0             
+302  0      142.txt  From                                0             
+303  0      142.txt  Jr.                                 0             
+304  0      142.txt  But                                 0             
+305  0      142.txt  After                               0             
+306  0      142.txt  Nash}, Jr.                          0             
+307  0      142.txt  Forbes Nash}, Jr.                   0             
+308  0      123.txt  Hunters                             0             
+309  0      123.txt  vaults,                             0             
+310  0      123.txt  armored                             0             
+311  0      123.txt  At                                  0             
+312  0      123.txt  Thus                                0             
+313  0      123.txt  vaults, armored                     0             
+314  0      346.txt  As                                  0             
+315  0      346.txt  Instead                             0             
+316  0      149.txt  Once                                0             
+317  0      208.txt  How                                 0             
+318  0      208.txt  Heading                             0             
+319  0      208.txt  As                                  0             
+320  0      208.txt  But                                 0             
+321  0      208.txt  Detective {Loki}                    0             
+322  0      84.txt   And                                 0             
+323  0      84.txt   When                                0             
+324  0      84.txt   Things                              0             
+325  0      84.txt   With                                0             
+326  0      84.txt   And {Ishaan}                        0             
+327  0      84.txt   {Ishaan}. {Nikumbh}                 0             
+328  0      30.txt   When                                0             
+329  0      304.txt  Inept                               0             
+330  0      304.txt  All                                 0             
+331  0      304.txt  (and                                0             
+332  0      304.txt  sometime                            0             
+333  0      304.txt  physical)                           0             
+334  0      304.txt  (and sometime                       0             
+335  0      304.txt  sometime physical)                  0             
+336  0      304.txt  (and sometime physical)             0             
+337  0      282.txt  But                                 0             
+338  0      282.txt  These                               0             
+339  0      23.txt   After                               0             
+340  0      23.txt   Behavioral                          0             
+341  0      23.txt   While                               0             
+342  0      23.txt   Dr.                                 0             
+343  0      23.txt   around                              0             
+344  0      23.txt   the                                 0             
+345  0      23.txt   Behavioral Science                  0             
+346  0      23.txt   Crawford}. While                    0             
+347  0      23.txt   {Crawford} asks                     0             
+348  0      23.txt   around the                          0             
+349  0      23.txt   {Jack Crawford}. While              0             
+350  0      23.txt   Dr. {Hannibal Lecter},              0             
+351  0      259.txt  Together,                           0             
+352  0      285.txt  Boat"                               0             
+353  0      285.txt  U-boats                             0             
+354  0      285.txt  Subject                             0             
+355  0      285.txt  "The Boat"                          0             
+356  0      285.txt  II. Subject                         0             
+357  0      283.txt  Focuses                             0             
+358  0      386.txt  Dig                                 0             
+359  0      386.txt  U.S. {Marshal                       0             
+360  0      386.txt  U.S. {Marshal Raylan                0             
+361  0      109.txt  Sometime                            0             
+362  0      109.txt  One                                 0             
+363  0      109.txt  Trying                              0             
+364  0      109.txt  One                                 0             
+365  0      109.txt  But                                 0             
+366  0      109.txt  Metropolis. {Freder}                0             
+367  0      109.txt  {John Fredersen}, who               0             
+368  0      245.txt  After                               0             
+369  0      245.txt  To                                  0             
+370  0      51.txt   Memento                             0             
+371  0      51.txt   One                                 0             
+372  0      128.txt  Although                            0             
+373  0      128.txt  Together,                           0             
+374  0      128.txt  However,                            0             
+375  0      128.txt  Motorist {Green Book},              0             
+376  0      5.txt    What                                0             
+377  0      5.txt    Based                               0             
+378  0      323.txt  Comedian {Dave                      0             
+379  0      323.txt  Comedian {Dave Chappelle}           0             
+380  0      320.txt  "Capturing                          0             
+381  0      320.txt  (2003)")                            0             
+382  0      320.txt  "All                                0             
+383  0      320.txt  Good                                0             
+384  0      320.txt  Things                              0             
+385  0      320.txt  (2010)",                            0             
+386  0      320.txt  "All Good                           0             
+387  0      320.txt  Good Things                         0             
+388  0      320.txt  "The Jinx"                          0             
+389  0      320.txt  {Morris Black}. It                  0             
+390  0      320.txt  "All Good Things                    0             
+391  0      377.txt  Have                                0             
+392  0      377.txt  Craggy                              0             
+393  0      377.txt  drinking,                           0             
+394  0      377.txt  and                                 0             
+395  0      377.txt  Craggy                              0             
+396  0      377.txt  Father {Ted                         0             
+397  0      377.txt  Craggy Island,                      0             
+398  0      377.txt  Father {Dougal                      0             
+399  0      377.txt  Father {Jack                        0             
+400  0      377.txt  drinking, and                       0             
+401  0      377.txt  Craggy Island.                      0             
+402  0      377.txt  Father {Ted Crilly}.                0             
+403  0      377.txt  Craggy Island, Ireland.             0             
+404  0      377.txt  Father {Dougal McGuire},            0             
+405  0      377.txt  Father {Jack Hackett}               0             
+406  0      256.txt  Set                                 0             
+407  0      256.txt  After                               0             
+408  0      256.txt  Det.                                0             
+409  0      256.txt  Det.                                0             
+410  0      256.txt  Det. {James                         0             
+411  0      256.txt  Barksdale}. {Avon                   0             
+412  0      256.txt  Det. {McNulty},                     0             
+413  0      256.txt  Det. {James McNulty}                0             
+414  0      256.txt  {Avon Barksdale}. {Avon             0             
+415  0      256.txt  Barksdale}. {Avon Barksdale},       0             
+416  0      256.txt  Lt. {Cedric Daniels},               0             
+417  0      62.txt   After                               0             
+418  0      62.txt   Eventually                          0             
+419  0      62.txt   Knowing                             0             
+420  0      74.txt   When                                0             
+421  0      74.txt   Once                                0             
+422  0      74.txt   Scotland. Once                      0             
+423  0      302.txt  Scranton, PA                        0             
+424  0      302.txt  {Michael Scott}. This               0             
+425  0      103.txt  Unfortunately                       0             
+426  0      103.txt  Before                              0             
+427  0      103.txt  Before {Lucas}                      0             
+428  0      93.txt   Pictures'                           0             
+429  0      93.txt   Both                                0             
+430  0      93.txt   (1927)                              0             
+431  0      93.txt   Musician                            0             
+432  0      93.txt   Monumental Pictures'                0             
+433  0      93.txt   {Simpson}, Monumental's             0             
+434  0      93.txt   Musician {Cosmo                     0             
+435  0      93.txt   Musician {Cosmo Brown},             0             
+436  0      262.txt  Emphasis                            0             
+437  0      205.txt  Set                                 0             
+438  0      205.txt  Formula                             0             
+439  0      73.txt   "Rosebud".                          0             
+440  0      73.txt   As                                  0             
+441  0      131.txt  Water                               0             
+442  0      131.txt  Power,                              0             
+443  0      131.txt  Eventually                          0             
+444  0      131.txt  Once                                0             
+445  0      131.txt  Eventually {Gittes}                 0             
+446  0      263.txt  Water                               0             
+447  0      263.txt  Fire                                0             
+448  0      263.txt  Fire                                0             
+449  0      263.txt  Only                                0             
+450  0      263.txt  But                                 0             
+451  0      263.txt  Together                            0             
+452  0      263.txt  Southern Water                      0             
+453  0      263.txt  Water Tribes,                       0             
+454  0      263.txt  {Aang}. Together                    0             
+455  0      263.txt  Southern Water Tribes,              0             
+456  0      97.txt   But                                 0             
+457  0      97.txt   But                                 0             
+458  0      387.txt  Following                           0             
+459  0      387.txt  Stones                              0             
+460  0      387.txt  A Rolling                           0             
+461  0      387.txt  A Rolling Stones                    0             
+462  0      33.txt   One                                 0             
+463  0      33.txt   Seeing                              0             
+464  0      33.txt   Tired                               0             
+465  0      33.txt   One Friday,                         0             
+466  0      33.txt   Friday, {Marion}                    0             
+467  0      33.txt   {Sam}'s California                  0             
+468  0      33.txt   One Friday, {Marion}                0             
+=============================================
+Test False Negative: 
+    index doc_name                  example  is_person_name
+0   0      196.txt  {Park                    1             
+1   0      196.txt  {Park Doo-Man}           1             
+2   0      80.txt   '{Peer                   1             
+3   0      80.txt   '{Peer Gynt}'            1             
+4   0      217.txt  {Karan},{Aslam},{Sukhi}  1             
+5   0      217.txt  {DJ}.                    1             
+6   0      217.txt  {DJ}                     1             
+7   0      217.txt  .{DJ}                    1             
+8   0      81.txt   {Austrian                1             
+9   0      81.txt   {Austrian Emperor        1             
+10  0      265.txt  {Conan                   1             
+11  0      265.txt  {Conan Doyle}            1             
+12  0      342.txt  {mayor}'s                1             
+13  0      358.txt  {Marsha                  1             
+14  0      358.txt  {Marsha Klein}'s         1             
+15  0      340.txt  {Lord                    1             
+16  0      123.txt  prey--{Neil}             1             
+17  0      131.txt  Gittes}                  1             
+18  0      131.txt  {Gittes}                 1             
+19  0      131.txt  {Gittes}                 1             
+20  0      131.txt  {Gittes}                 1             
+21  0      131.txt  {Gittes}                 1             
+DecisionTreeClassifier        89.40          87.66          88.52          
+=============================================
+Test False Positive: 
+    index doc_name                      example  is_person_name
+0   0      389.txt  Detective                    0             
+1   0      389.txt  Detective Chief              0             
+2   0      389.txt  Detective Chief Inspector    0             
+3   0      272.txt  Stone                        0             
+4   0      272.txt  Stone to                     0             
+5   0      40.txt   Security                     0             
+6   0      85.txt   Imperial                     0             
+7   0      85.txt   Engineering,                 0             
+8   0      217.txt  Sue                          0             
+9   0      150.txt  Wall                         0             
+10  0      59.txt   WWI                          0             
+11  0      137.txt  Allied                       0             
+12  0      137.txt  and Allied governments,      0             
+13  0      124.txt  Incendies                    0             
+14  0      115.txt  Life"                        0             
+15  0      115.txt  Channing} ({Bette Davis}).   0             
+16  0      115.txt  Simpson} ({Gary Merrill}).   0             
+17  0      342.txt  Dr. {Kenzo Tenma},           0             
+18  0      183.txt  While                        0             
+19  0      183.txt  Bomb":                       0             
+20  0      202.txt  Princes                      0             
+21  0      181.txt  Did                          0             
+22  0      181.txt  Did {Nick                    0             
+23  0      181.txt  Did {Nick Dunne}             0             
+24  0      255.txt  Stage                        0             
+25  0      255.txt  Stage III                    0             
+26  0      98.txt   by {Gregory                  0             
+27  0      98.txt   the Radleys,                 0             
+28  0      341.txt  "Duchess."                   0             
+29  0      112.txt  Dr. {Henry Jones}.           0             
+30  0      270.txt  Visuals                      0             
+31  0      270.txt  Visuals are usually          0             
+32  0      397.txt  Yes                          0             
+33  0      397.txt  Cabinet                      0             
+34  0      397.txt  Yes Minister,                0             
+35  0      397.txt  Sir {Humphrey}.              0             
+36  0      340.txt  Downton                      0             
+37  0      340.txt  a Manchester lawyer,         0             
+38  0      180.txt  Berk,                        0             
+39  0      180.txt  Regardless,                  0             
+40  0      180.txt  the young Viking,            0             
+41  0      4.txt    Begins,                      0             
+42  0      4.txt    {Batman} Begins,             0             
+43  0      227.txt  Gretchen,                    0             
+44  0      264.txt  legendary BBC                0             
+45  0      375.txt  Ones"                        0             
+46  0      133.txt  Totoros                      0             
+47  0      133.txt  Totoros,                     0             
+48  0      48.txt   Emperor,                     0             
+49  0      48.txt   Emperor, {Marcus Aurelius}.  0             
+50  0      229.txt  a Jew,                       0             
+51  0      229.txt  an Arab,                     0             
+52  0      142.txt  Nash}, Jr.                   0             
+53  0      142.txt  Forbes Nash}, Jr.            0             
+54  0      285.txt  Boat"                        0             
+55  0      285.txt  U-boats                      0             
+56  0      109.txt  an                           0             
+57  0      245.txt  Accuser. To                  0             
+58  0      320.txt  Things                       0             
+59  0      320.txt  Good Things                  0             
+60  0      377.txt  Craggy                       0             
+61  0      377.txt  Craggy                       0             
+62  0      256.txt  Det.                         0             
+63  0      256.txt  Det.                         0             
+64  0      256.txt  determined Det.              0             
+65  0      256.txt  but determined Det.          0             
+66  0      103.txt  Before {Lucas}               0             
+67  0      93.txt   Pictures'                    0             
+68  0      262.txt  Emphasis                     0             
+69  0      205.txt  Formula                      0             
+70  0      205.txt  Formula 1                    0             
+71  0      205.txt  Lauda} ({Bruhl}).            0             
+72  0      205.txt  {Niki Lauda} ({Bruhl}).      0             
+73  0      73.txt   "Rosebud".                   0             
+74  0      131.txt  Angeles,                     0             
+75  0      131.txt  Water                        0             
+76  0      131.txt  Power,                       0             
+77  0      131.txt  Angeles,                     0             
+78  0      387.txt  Stones                       0             
+79  0      387.txt  Rolling Stones               0             
+=============================================
+Test False Negative: 
+    index doc_name                    example  is_person_name
+0   0      364.txt  {Jeremy                    1             
+1   0      196.txt  {Park                      1             
+2   0      196.txt  Doo-Man}                   1             
+3   0      196.txt  {Park Doo-Man}             1             
+4   0      196.txt  {Cho Yong-koo},            1             
+5   0      196.txt  {Seo Tae-Yoon}             1             
+6   0      389.txt  {Japp}.                    1             
+7   0      80.txt   Grieg}'s                   1             
+8   0      80.txt   '{Peer                     1             
+9   0      80.txt   {Edvard Grieg}'s           1             
+10  0      80.txt   '{Peer Gynt}'              1             
+11  0      156.txt  Swann}                     1             
+12  0      156.txt  Alexander Swann}           1             
+13  0      156.txt  {Charles Alexander Swann}  1             
+14  0      85.txt   {Farhan                    1             
+15  0      85.txt   Sahastrabudhe},            1             
+16  0      85.txt   {Raju Rastogi}             1             
+17  0      85.txt   {Viru Sahastrabudhe},      1             
+18  0      83.txt   Leto})                     1             
+19  0      83.txt   {Tyrone}                   1             
+20  0      83.txt   ({Jared Leto})             1             
+21  0      217.txt  {Karan},{Aslam},{Sukhi}    1             
+22  0      217.txt  {DJ}.                      1             
+23  0      217.txt  {DJ}                       1             
+24  0      217.txt  .{DJ}                      1             
+25  0      192.txt  {Elias                     1             
+26  0      192.txt  Grodin}.                   1             
+27  0      192.txt  {Elias Grodin}.            1             
+28  0      81.txt   {Antonio                   1             
+29  0      81.txt   {Austrian                  1             
+30  0      81.txt   {Mozart}.                  1             
+31  0      81.txt   {Austrian Emperor          1             
+32  0      81.txt   {Austrian Emperor Joseph}  1             
+33  0      150.txt  {Jordan                    1             
+34  0      265.txt  {Conan                     1             
+35  0      265.txt  {Conan Doyle}              1             
+36  0      374.txt  {Mark}                     1             
+37  0      374.txt  {Jez}                      1             
+38  0      115.txt  Davis}).                   1             
+39  0      115.txt  ({Bette Davis}).           1             
+40  0      352.txt  Swanson},                  1             
+41  0      15.txt   {Aragorn},                 1             
+42  0      15.txt   {Gimli}                    1             
+43  0      342.txt  {Kenzo                     1             
+44  0      342.txt  {mayor}'s                  1             
+45  0      207.txt  {Max},                     1             
+46  0      202.txt  {Andreiv                   1             
+47  0      358.txt  {Marsha                    1             
+48  0      358.txt  Klein}'s                   1             
+49  0      358.txt  {Marsha Klein}'s           1             
+50  0      98.txt   {Gregory                   1             
+51  0      98.txt   Peck})                     1             
+52  0      98.txt   {Gregory Peck})            1             
+53  0      112.txt  {Henry                     1             
+54  0      157.txt  {Isak                      1             
+55  0      157.txt  {Isak Borg},               1             
+56  0      340.txt  {Lord                      1             
+57  0      340.txt  {Lord Grantham}            1             
+58  0      4.txt    {James                     1             
+59  0      264.txt  {David                     1             
+60  0      287.txt  {Jane                      1             
+61  0      250.txt  {Rusell}.                  1             
+62  0      250.txt  {Jack Russell}             1             
+63  0      375.txt  {Dre}                      1             
+64  0      229.txt  {Saïd},                    1             
+65  0      123.txt  prey--{Neil}               1             
+66  0      123.txt  {Vincent Hanna}            1             
+67  0      346.txt  {Matt Murdock}             1             
+68  0      149.txt  {John                      1             
+69  0      208.txt  {Loki}                     1             
+70  0      23.txt   {Hannibal                  1             
+71  0      386.txt  {Marshal}                  1             
+72  0      386.txt  {Marshal Raylan            1             
+73  0      128.txt  {Green                     1             
+74  0      128.txt  {Green Book},              1             
+75  0      320.txt  Black}.                    1             
+76  0      320.txt  Dunst}.                    1             
+77  0      320.txt  {Kirsten Dunst}.           1             
+78  0      377.txt  Crilly}.                   1             
+79  0      377.txt  Hackett}                   1             
+80  0      377.txt  {Jack Hackett}             1             
+81  0      256.txt  {D'Angelo                  1             
+82  0      256.txt  {James                     1             
+83  0      256.txt  {D'Angelo                  1             
+84  0      256.txt  {Cedric                    1             
+85  0      256.txt  {James McNulty}            1             
+86  0      302.txt  Scott}.                    1             
+87  0      205.txt  ({Bruhl}).                 1             
+88  0      131.txt  {Jake                      1             
+89  0      131.txt  Gittes}                    1             
+90  0      131.txt  {Gittes}                   1             
+91  0      131.txt  {Gittes}                   1             
+92  0      131.txt  {Gittes}                   1             
+93  0      131.txt  {Gittes}                   1             
+94  0      131.txt  {Jake Gittes}              1             
+RandomForestClassifier        92.21          87.66          89.88          
+=============================================
+Test False Positive: 
+    index doc_name           example  is_person_name
+0   0      364.txt  India,            0             
+1   0      196.txt  Korea,            0             
+2   0      272.txt  Stone             0             
+3   0      40.txt   Security          0             
+4   0      85.txt   Air               0             
+5   0      85.txt   Imperial          0             
+6   0      85.txt   Engineering,      0             
+7   0      217.txt  Sue               0             
+8   0      150.txt  Wall              0             
+9   0      137.txt  Allied            0             
+10  0      124.txt  Adapted           0             
+11  0      124.txt  Incendies         0             
+12  0      115.txt  Life"             0             
+13  0      15.txt   Elf               0             
+14  0      183.txt  While             0             
+15  0      183.txt  Strongest":       0             
+16  0      183.txt  Bomb":            0             
+17  0      202.txt  Princes           0             
+18  0      181.txt  Did               0             
+19  0      181.txt  Did {Nick         0             
+20  0      315.txt  D.C.,             0             
+21  0      255.txt  Stage             0             
+22  0      255.txt  Stage III         0             
+23  0      341.txt  "Duchess."        0             
+24  0      270.txt  Visuals           0             
+25  0      397.txt  Yes               0             
+26  0      397.txt  Cabinet           0             
+27  0      340.txt  Downton           0             
+28  0      180.txt  Berk,             0             
+29  0      180.txt  Regardless,       0             
+30  0      4.txt    Begins,           0             
+31  0      227.txt  Gretchen,         0             
+32  0      264.txt  legendary BBC     0             
+33  0      375.txt  Ones"             0             
+34  0      48.txt   Emperor,          0             
+35  0      123.txt  Hunters           0             
+36  0      283.txt  Focuses           0             
+37  0      320.txt  Good              0             
+38  0      320.txt  Things            0             
+39  0      320.txt  Good Things       0             
+40  0      320.txt  "All Good Things  0             
+41  0      377.txt  Craggy            0             
+42  0      377.txt  Craggy            0             
+43  0      256.txt  Det.              0             
+44  0      256.txt  Det.              0             
+45  0      103.txt  Before            0             
+46  0      93.txt   Pictures'         0             
+47  0      262.txt  Emphasis          0             
+48  0      205.txt  Formula           0             
+49  0      205.txt  Formula 1         0             
+50  0      73.txt   "Rosebud".        0             
+51  0      131.txt  Angeles,          0             
+52  0      131.txt  Water             0             
+53  0      131.txt  Power,            0             
+54  0      131.txt  Angeles,          0             
+55  0      263.txt  Air               0             
+56  0      387.txt  Stones            0             
+=============================================
+Test False Negative: 
+    index doc_name                      example  is_person_name
+0   0      196.txt  {Park                        1             
+1   0      196.txt  Doo-Man}                     1             
+2   0      196.txt  Yong-koo},                   1             
+3   0      196.txt  Tae-Yoon}                    1             
+4   0      196.txt  {Park Doo-Man}               1             
+5   0      196.txt  {Cho Yong-koo},              1             
+6   0      196.txt  {Seo Tae-Yoon}               1             
+7   0      389.txt  Christie}'s                  1             
+8   0      389.txt  {Japp}.                      1             
+9   0      389.txt  {Agatha Christie}'s          1             
+10  0      80.txt   Grieg}'s                     1             
+11  0      80.txt   '{Peer                       1             
+12  0      80.txt   {Edvard Grieg}'s             1             
+13  0      80.txt   '{Peer Gynt}'                1             
+14  0      34.txt   {Danny Vineyard}'s           1             
+15  0      156.txt  Swann}                       1             
+16  0      85.txt   {Raju Rastogi}               1             
+17  0      83.txt   {Tyrone}                     1             
+18  0      217.txt  {Karan},{Aslam},{Sukhi}      1             
+19  0      217.txt  {DJ}.                        1             
+20  0      217.txt  {DJ}                         1             
+21  0      217.txt  .{DJ}                        1             
+22  0      192.txt  {Elias                       1             
+23  0      192.txt  {Elias Grodin}.              1             
+24  0      81.txt   {Austrian                    1             
+25  0      81.txt   {Mozart}.                    1             
+26  0      81.txt   Amadeus Mozart}'s            1             
+27  0      81.txt   {Austrian Emperor            1             
+28  0      81.txt   {Wolfgang Amadeus Mozart}'s  1             
+29  0      81.txt   {Austrian Emperor Joseph}    1             
+30  0      265.txt  {Conan                       1             
+31  0      265.txt  {Conan Doyle}                1             
+32  0      28.txt   Söze}                        1             
+33  0      374.txt  {Mark}                       1             
+34  0      124.txt  Mouawad}'s                   1             
+35  0      352.txt  Swanson},                    1             
+36  0      15.txt   {Aragorn},                   1             
+37  0      15.txt   {Gimli}                      1             
+38  0      15.txt   {Saruman}'s                  1             
+39  0      342.txt  {Kenzo                       1             
+40  0      342.txt  {mayor}'s                    1             
+41  0      202.txt  {Andreiv Rublev}             1             
+42  0      178.txt  {Mary}                       1             
+43  0      358.txt  {Marsha                      1             
+44  0      358.txt  Klein}'s                     1             
+45  0      358.txt  {Marsha Klein}'s             1             
+46  0      98.txt   {Gregory                     1             
+47  0      98.txt   {Gregory Peck})              1             
+48  0      341.txt  {Sterling                    1             
+49  0      112.txt  {Henry                       1             
+50  0      157.txt  {Isak                        1             
+51  0      157.txt  {Isak Borg},                 1             
+52  0      340.txt  {Lord                        1             
+53  0      340.txt  {Lord Grantham}              1             
+54  0      4.txt    {James                       1             
+55  0      264.txt  {David                       1             
+56  0      264.txt  Attenborough}'s              1             
+57  0      287.txt  {Jane                        1             
+58  0      287.txt  {Jane Austen}'s              1             
+59  0      250.txt  {Jack Russell}               1             
+60  0      375.txt  {Dre}                        1             
+61  0      123.txt  prey--{Neil}                 1             
+62  0      123.txt  {Vincent Hanna}              1             
+63  0      346.txt  {Matt Murdock}               1             
+64  0      149.txt  {John                        1             
+65  0      149.txt  {John Merrick}               1             
+66  0      208.txt  {Loki}                       1             
+67  0      30.txt   {Spider-Man}.                1             
+68  0      23.txt   {Hannibal                    1             
+69  0      386.txt  {Marshal}                    1             
+70  0      386.txt  {Marshal Raylan              1             
+71  0      128.txt  {Green                       1             
+72  0      128.txt  {Green Book},                1             
+73  0      320.txt  Black}.                      1             
+74  0      320.txt  Gosling}                     1             
+75  0      320.txt  Dunst}.                      1             
+76  0      320.txt  {Ryan Gosling}               1             
+77  0      377.txt  {Jack Hackett}               1             
+78  0      256.txt  {D'Angelo                    1             
+79  0      256.txt  {James                       1             
+80  0      256.txt  Bell},                       1             
+81  0      256.txt  {Wee-Bey}                    1             
+82  0      256.txt  {D'Angelo                    1             
+83  0      256.txt  {Cedric                      1             
+84  0      256.txt  {James McNulty}              1             
+85  0      256.txt  {D'Angelo Barksdale}),       1             
+86  0      74.txt   {William Wallac}e's          1             
+87  0      302.txt  Scott}.                      1             
+88  0      131.txt  {Jake                        1             
+89  0      131.txt  Gittes}                      1             
+90  0      131.txt  {Gittes}                     1             
+91  0      131.txt  {Gittes}                     1             
+92  0      131.txt  {Gittes}                     1             
+93  0      131.txt  {Gittes}                     1             
+94  0      131.txt  {Jake Gittes}                1             
+===================================================================

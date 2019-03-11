@@ -412,12 +412,6 @@ if __name__ == '__main__':
             clf = Clf()
             clf.fit(X_train_no_example, y_train_no_example)
 
-            if DEBUG and isinstance(clf, LogisticRegression):
-                coef_df = pd.DataFrame()
-                coef_df['features'] = X_train_no_example.columns
-                coef_df['coef'] = clf.coef_[0]
-                print(coef_df)
-
             y_predict = clf.predict(X_test_no_example)
 
             # post processing
@@ -432,6 +426,12 @@ if __name__ == '__main__':
             # for DEBUG
 
             if DEBUG:
+
+                if isinstance(clf, LogisticRegression):
+                    coef_df = pd.DataFrame()
+                    coef_df['features'] = X_train_no_example.columns
+                    coef_df['coef'] = clf.coef_[0]
+                    print(coef_df)
 
                 y_false = y_test[np.not_equal(y_test_no_example, y_predict)]
                 X_false = X_test[np.not_equal(y_test_no_example, y_predict)]
