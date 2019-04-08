@@ -14,13 +14,20 @@ def get_movie_info(home_url):
     Given a url for a page of a movie, return the movie info as a list
     """
     info = []
-    homepage = requests.get(home_url)
-    home_soup = BS(homepage.content, 'html.parser')
+    home_page = requests.get(home_url)
+    home_soup = BS(home_page.content, 'html.parser')
+    crew_url_suffix = home_soup.find('a', text="Full Cast & Crew").get('href')
+    crew_page = requests.get(TMDB_BASE_URL + crew_url_suffix)
+    crew_soup = BS(crew_page.content, 'html.parser')
     # name
     name = home_soup.find('h2').get_text()
     info.append(name)
+    print("Name: " + name)
     # year
+    year = home_soup.find('span', class_="release_date").get_text()
+    year = year[1:-1]
     # directors
+
     # writers
     # actors
     # runtime
