@@ -1,14 +1,16 @@
 import requests
-import re
 from bs4 import BeautifulSoup as BS
+from multiprocessing import Pool
+import csv
 
 
 TMDB_MOVIE_LIST_URL = 'https://www.themoviedb.org/movie?page='
 TMDB_BASE_URL = 'https://www.themoviedb.org'
 
-TOTAL_NUMBER = 20 # TODO: change this to 4000
+TOTAL_NUMBER = 4000 # TODO: change this to 4000
 MOVIES_PER_PAGE = 20
-
+NUM_PROC = 40
+OUTPUT_FILE_PATH = '../data/tmdb.csv'
 
 def get_crew_list(soup, type):
     list = []
@@ -103,7 +105,15 @@ def get_movies_in_page(movie_list_url):
 
 
 if __name__ == '__main__':
-    movies = []
-    for page_no in range(int(TOTAL_NUMBER / MOVIES_PER_PAGE)):
-        movies.extend(get_movies_in_page(TMDB_MOVIE_LIST_URL + str(page_no + 1)))
-    print(movies)
+    pool = Pool(NUM_PROC)
+
+    output_file = open(OUTPUT_FILE_PATH, 'w')
+    csv_writer = csv.writer(output_file, delimiter=',')
+
+    # start_ids = [1]
+    movie_list_urls = [TMDB_MOVIE_LIST_URL + str(page_no) for page_no in range(1, int(TOTAL_NUMBER / MOVIES_PER_PAGE)+1)]
+
+    csv_writer.writerow(['title', 'year', 'genres', 'language', 'runtime', 'budget', 'revenue', 'directors', 'writers', 'actors'])
+    for movies in (pool.map(get_movies_in_page, movie_list_urls)):
+        for movie in movies:
+            csv_writer.writerow(movie)

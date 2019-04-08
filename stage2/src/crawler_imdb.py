@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# @Date    : 2019-02-25
+# @Date    : 2019-04-08
 # @Author  : Bruce Bai (guangtong.bai@wisc.edu)
 
 import requests
@@ -11,25 +11,12 @@ import csv
 
 IMDB_BASE_URL = 'https://www.imdb.com'
 FILM_LIST_TEMPLATE = 'https://www.imdb.com/search/title?title_type=feature&sort=boxoffice_gross_us,desc&start={}&ref_=adv_nxt' # feature film list sorted by U.S. box office descending
-DATA_FOLDER_PATH = '../data/'
-OUTPUT_FILE_NAME = 'imdb.csv'
-NUM_DOCS = 50
-NUM_PROC = 2
-
-def get_video_list_from_imdb_list(list_url):
-    """Given a url for a film list on IMDb, returns a list of (video_name, video_url) on that film list"""
-    video_list = []
-    webpage = requests.get(list_url)
-    soup = BS(webpage.content, 'html.parser')
-    for div in (soup.find_all('div', class_='lister-item mode-advanced')):
-        div_content = div.find('div', class_='lister-item-content')
-        a_title = div_content.h3.a
-        video_name, video_relative_url = a_title.string, a_title.get('href')
-        video_list.append( (video_name, IMDB_BASE_URL + video_relative_url) )
-
-    return video_list
+OUTPUT_FILE_PATH = '../data/imdb.csv'
+NUM_VIDEOS = 4000
+NUM_PROC = 40
 
 def get_persons_related_to_imdb_video(video_url):
+    """Given a url for a video on IMDb, returns persons (in particular, directors, writers and actors) related to the video"""
     directors, writers, actors = '', '', ''
     credits_url = video_url[:video_url.rfind('?')] + 'fullcredits'
     webpage = requests.get(credits_url)
@@ -56,8 +43,8 @@ def get_persons_related_to_imdb_video(video_url):
             actors = persons
     return directors, writers, actors
 
-def get_info_from_imdb_video(video_url):
-    """Given a url for a video on IMDb, returns info that video"""
+def get_info_about_imdb_video(video_url):
+    """Given a url for a video on IMDb, returns info about that video, including title, year, genres, language, runtime, budget, revenue, directors, writers and actors"""
     webpage = requests.get(video_url)
     soup = BS(webpage.content, 'html.parser')
 
@@ -72,7 +59,7 @@ def get_info_from_imdb_video(video_url):
     for div in (div_storyline.find_all('div', class_='see-more inline canwrap')):
         if 'Genre' in div.h4.string:
             for a_genre in div.find_all('a'):
-                genres.append(a_genre.get_text())
+                genres.append(a_genre.get_text().strip())
             break
     genres = ';'.join(genres)
 
@@ -102,21 +89,29 @@ def get_info_from_imdb_video(video_url):
 
     return title, year, genres, language, runtime, budget, revenue, directors, writers, actors
 
-def get_row_list_from_imdb_list(start_doc_id):
-    list_url = FILM_LIST_TEMPLATE.format(start_doc_id)
-    movie_list = get_video_list_from_imdb_list(list_url)
-    row_list = []
-    for video_name, video_url in movie_list:
-        row_list.append(get_info_from_imdb_video(video_url))
-    return row_list
+def get_info_list_from_imdb_list(start_id):
+    """Given a start id, return a list of info tuple, one for each video with id in range [start_id, start_id+50)"""
+    info_list = []
+    list_url = FILM_LIST_TEMPLATE.format(start_id)
+    webpage = requests.get(list_url)
+    soup = BS(webpage.content, 'html.parser')
+    for div in (soup.find_all('div', class_='lister-item mode-advanced')):
+        div_content = div.find('div', class_='lister-item-content')
+        video_relative_url = div_content.h3.a.get('href')
+        info_list.append(get_info_about_imdb_video(IMDB_BASE_URL + video_relative_url))
+        break
+    return info_list
 
 if __name__ == '__main__':
     pool = Pool(NUM_PROC)
-    output_file = open(DATA_FOLDER_PATH+OUTPUT_FILE_NAME, 'w')
+
+    output_file = open(OUTPUT_FILE_PATH, 'w')
     csv_writer = csv.writer(output_file, delimiter=',')
-    # start_doc_ids = [1]
-    start_doc_ids = [start_doc_id for start_doc_id in range(1, NUM_DOCS, 50)]
+
+    # start_ids = [1]
+    start_ids = [start_id for start_id in range(1, NUM_VIDEOS, 50)]
+
     csv_writer.writerow(['title', 'year', 'genres', 'language', 'runtime', 'budget', 'revenue', 'directors', 'writers', 'actors'])
-    for row_list in (pool.map(get_row_list_from_imdb_list, start_doc_ids)):
-        for row in row_list:
-            csv_writer.writerow(row)
+    for info_list in (pool.map(get_info_list_from_imdb_list, start_ids)):
+        for info in info_list:
+            csv_writer.writerow(info)
