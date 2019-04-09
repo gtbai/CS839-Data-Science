@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import requests
 from bs4 import BeautifulSoup as BS
 from multiprocessing import Pool
@@ -9,7 +11,7 @@ TMDB_BASE_URL = 'https://www.themoviedb.org'
 
 TOTAL_NUMBER = 4000 # TODO: change this to 4000
 MOVIES_PER_PAGE = 20
-NUM_PROC = 40
+NUM_PROC = 8 
 OUTPUT_FILE_PATH = '../data/tmdb.csv'
 
 def get_crew_list(soup, type):
@@ -100,9 +102,12 @@ def get_movies_in_page(movie_list_url):
     soup = BS(movie_list.content, 'html.parser')
     for link in soup.find_all('a', class_='title result'):
         url = TMDB_BASE_URL + link.get('href')
-        movies.append(get_movie_info(url))
+        try:
+            movies.append(get_movie_info(url))
+        except Exception:
+            continue
+    print("Crawled movie list on page {}".format(movie_list_url[movie_list_url.rfind('=')+1:]))
     return movies
-
 
 if __name__ == '__main__':
     pool = Pool(NUM_PROC)
@@ -114,6 +119,8 @@ if __name__ == '__main__':
     movie_list_urls = [TMDB_MOVIE_LIST_URL + str(page_no) for page_no in range(1, int(TOTAL_NUMBER / MOVIES_PER_PAGE)+1)]
 
     csv_writer.writerow(['title', 'year', 'genres', 'language', 'runtime', 'budget', 'revenue', 'directors', 'writers', 'actors'])
+    id = 1
     for movies in (pool.map(get_movies_in_page, movie_list_urls)):
         for movie in movies:
-            csv_writer.writerow(movie)
+            csv_writer.writerow([id] + list(movie))
+            id += 1

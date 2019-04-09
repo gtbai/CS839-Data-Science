@@ -13,7 +13,7 @@ IMDB_BASE_URL = 'https://www.imdb.com'
 FILM_LIST_TEMPLATE = 'https://www.imdb.com/search/title?title_type=feature&sort=boxoffice_gross_us,desc&start={}&ref_=adv_nxt' # feature film list sorted by U.S. box office descending
 OUTPUT_FILE_PATH = '../data/imdb.csv'
 NUM_VIDEOS = 4000
-NUM_PROC = 40
+NUM_PROC = 8
 
 def get_persons_related_to_imdb_video(video_url):
     """Given a url for a video on IMDb, returns persons (in particular, directors, writers and actors) related to the video"""
@@ -94,12 +94,16 @@ def get_info_list_from_imdb_list(start_id):
     info_list = []
     list_url = FILM_LIST_TEMPLATE.format(start_id)
     webpage = requests.get(list_url)
+    # print(list_url, webpage)
     soup = BS(webpage.content, 'html.parser')
     for div in (soup.find_all('div', class_='lister-item mode-advanced')):
         div_content = div.find('div', class_='lister-item-content')
         video_relative_url = div_content.h3.a.get('href')
-        info_list.append(get_info_about_imdb_video(IMDB_BASE_URL + video_relative_url))
-        break
+        try:
+            info_list.append(get_info_about_imdb_video(IMDB_BASE_URL + video_relative_url))
+        except Exception:
+            continue
+    print("Crawled movie {} to {}".format(start_id, start_id+50-1))
     return info_list
 
 if __name__ == '__main__':
@@ -112,6 +116,8 @@ if __name__ == '__main__':
     start_ids = [start_id for start_id in range(1, NUM_VIDEOS, 50)]
 
     csv_writer.writerow(['title', 'year', 'genres', 'language', 'runtime', 'budget', 'revenue', 'directors', 'writers', 'actors'])
-    for info_list in (pool.map(get_info_list_from_imdb_list, start_ids)):
+    id = 1
+    for info_list in pool.map(get_info_list_from_imdb_list, start_ids):
         for info in info_list:
-            csv_writer.writerow(info)
+            csv_writer.writerow([id] + list(info))
+            id += 1
