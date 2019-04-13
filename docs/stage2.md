@@ -4,7 +4,7 @@ title: Project Stage 2
 nav_order: 3
 ---
 
-# Stage 2
+# Project Stage 2
 
 ## Links
 
