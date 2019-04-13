@@ -1,4 +1,12 @@
+---
+layout: default
+title: Homepage
+nav_order: 1
+---
+
 # Homepage
+
+Project homepage for [UW-Madison CS839 Data Science Spring 2019](https://sites.google.com/site/anhaidgroup/courses/cs-838-spring-2019)
 
 ## Member Information
 

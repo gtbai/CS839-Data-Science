@@ -1,3 +1,9 @@
+---
+layout: default
+title: Project Stage 1
+nav_order: 1
+---
+
 # Stage 1
 
 ## Links
