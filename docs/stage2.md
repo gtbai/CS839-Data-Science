@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Project Stage 2
-nav_order: 2
+nav_order: 3
 ---
 
 # Stage 2
