@@ -8,6 +8,6 @@
 
 ## Links to Project Stages
 
-+ [Stage 0: Form team]() {.d-inline} Completed {: .label .label-green }
-+ [Stage 1: Information extraction from natural text](https://gtbai.github.io/CS839-Data-Science/stage1) {.d-inline} Completed {: .label .label-green }
-+ [Stage 2: Crawling and extracting structured data from Web pages](https://gtbai.github.io/CS839-Data-Science/stage2) {.d-inline} Completed {: .label .label-green }
++ [Stage 0: Form team]() {: .d-inline} Completed {: .label .label-green }
++ [Stage 1: Information extraction from natural text](https://gtbai.github.io/CS839-Data-Science/stage1) {: .d-inline} Completed {: .label .label-green }
++ [Stage 2: Crawling and extracting structured data from Web pages](https://gtbai.github.io/CS839-Data-Science/stage2) {: .d-inline} Completed {: .label .label-green }
