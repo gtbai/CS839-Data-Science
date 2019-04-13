@@ -118,7 +118,7 @@ if __name__ == '__main__':
     # start_ids = [1]
     movie_list_urls = [TMDB_MOVIE_LIST_URL + str(page_no) for page_no in range(1, int(TOTAL_NUMBER / MOVIES_PER_PAGE)+1)]
 
-    csv_writer.writerow(['title', 'year', 'genres', 'language', 'runtime', 'budget', 'revenue', 'directors', 'writers', 'actors'])
+    csv_writer.writerow(['id', 'title', 'year', 'genres', 'language', 'runtime', 'budget', 'revenue', 'directors', 'writers', 'actors'])
     id = 1
     for movies in (pool.map(get_movies_in_page, movie_list_urls)):
         for movie in movies:

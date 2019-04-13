@@ -115,7 +115,7 @@ if __name__ == '__main__':
     # start_ids = [1]
     start_ids = [start_id for start_id in range(1, NUM_VIDEOS, 50)]
 
-    csv_writer.writerow(['title', 'year', 'genres', 'language', 'runtime', 'budget', 'revenue', 'directors', 'writers', 'actors'])
+    csv_writer.writerow(['id', 'title', 'year', 'genres', 'language', 'runtime', 'budget', 'revenue', 'directors', 'writers', 'actors'])
     id = 1
     for info_list in pool.map(get_info_list_from_imdb_list, start_ids):
         for info in info_list:
