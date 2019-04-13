@@ -1,11 +1,5 @@
 # Stage 1
 
-<!-- ## Member Information
-
-+ Guangtong Bai (<tt>[guangtong.bai@wisc.edu](mailto:guangtong.bai@wisc.edu)</tt>)
-+ Dan Jiang (<tt>[dan.jiang@wisc.edu](mailto:dan.jiang@wisc.edu)</tt>)
-+ Changtian Sun (<tt>[changtiansun@cs.wisc.edu](mailto:changtiansun@cs.wisc.edu)</tt>) -->
-
 ## Links
 
 + [Documents](https://github.com/gtbai/CS839-Data-Science/tree/master/stage1/documents)
