@@ -8,9 +8,8 @@ nav_order: 4
 
 ## Links
 
-User ID: bugwriter
-
 ### Matching Fodors and Zagats
 
++ User ID: bugwriter
 + Project ID: trial
-+ [Screen Shot]()
++ [Screen Shot](https://github.com/gtbai/CS839-Data-Science/blob/master/stage3/trial/screen_shot.png)
