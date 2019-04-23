@@ -6,9 +6,7 @@ nav_order: 4
 
 # Project Stage 3
 
-## Links
-
-### Matching Fodors and Zagats
+## Matching Fodors and Zagats
 
 + User ID: `bugwriter`
 + Project ID: `trial`
