@@ -25,3 +25,15 @@ nav_order: 4
 + User ID: `bugwriter`
 + Project ID: `movies`
 + Screenshot: ![Screenshot](https://raw.githubusercontent.com/gtbai/CS839-Data-Science/master/stage3/matching/screen_shot.png)
+
+## Estimating Accuracy
+
++ [Prediction list](https://raw.githubusercontent.com/gtbai/CS839-Data-Science/master/stage3/estimating/falcon_cm_matching_al_ds)
++ [Candidate set](https://raw.githubusercontent.com/gtbai/CS839-Data-Science/master/stage3/estimating/falcon_apply_rules_ds)
++ [Table A](https://raw.githubusercontent.com/gtbai/CS839-Data-Science/master/stage3/estimating/imdb)
++ [Table B](https://raw.githubusercontent.com/gtbai/CS839-Data-Science/master/stage3/estimating/tmdb)
++ Size of the candidate set C: 3179
++ 
+
+
+
