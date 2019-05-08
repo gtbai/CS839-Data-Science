@@ -19,4 +19,4 @@ Project homepage for [UW-Madison CS839 Data Science Spring 2019](https://sites.g
 + [Stage 0: Form team]() (*completed*)
 + [Stage 1: Information extraction from natural text](https://gtbai.github.io/CS839-Data-Science/stage1) (*completed*)
 + [Stage 2: Crawling and extracting structured data from Web pages](https://gtbai.github.io/CS839-Data-Science/stage2) (*completed*)
-+ [Stage 3: Entity Matching](https://gtbai.github.io/CS839-Data-Science/stage3) (*in progress*)
++ [Stage 3: Entity Matching](https://gtbai.github.io/CS839-Data-Science/stage3) (*completeds*)
