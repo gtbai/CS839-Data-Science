@@ -10,7 +10,7 @@ import argparse
 TO_LABEL_PATH = 'pairs_to_label.csv'
 TABLE1_PATH = 'imdb'
 TABLE2_PATH = 'tmdb'
-LABELED_PATH = 'pairs_labeled.csv'
+LABELED_PATH = 'labeled_pairs.csv'
 CKPT_PATH = 'checkpoint'
 
 class _Getch:
